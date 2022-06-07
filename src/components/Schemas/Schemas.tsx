@@ -90,6 +90,7 @@ export const Schemas: React.VFC<SchemasProps> = ({
         </S.Label>
         <Box display="flex" justifyContent="space-between">
           <S.Button
+            border=""
             variant="text"
             onClick={handleClearAll}
             data-testid="schema-clear"
@@ -97,7 +98,7 @@ export const Schemas: React.VFC<SchemasProps> = ({
             clear
           </S.Button>
           <S.Button
-            border
+            border="true"
             variant="outlined"
             onClick={onSubmit}
             data-testid="schema-validate"

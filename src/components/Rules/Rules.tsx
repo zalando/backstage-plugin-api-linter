@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { useApi } from '@backstage/core-plugin-api';
-import { Rule, zallyApiRef } from '../../api';
-import { Box, Button, Typography } from '@material-ui/core';
-import { Loading } from '../Loading';
-import { DetailsCard } from './components/DetailsCard';
-import * as S from './styles';
+import React, { useEffect, useState } from "react";
+import { useApi } from "@backstage/core-plugin-api";
+import { Rule, zallyApiRef } from "../../api";
+import { Box, Button, Typography } from "@material-ui/core";
+import { Loading } from "../Loading";
+import { DetailsCard } from "./components/DetailsCard";
+import * as S from "./styles";
 
 type RulesProps = {
   openRules: boolean;
@@ -25,15 +25,11 @@ export const Rules: React.VFC<RulesProps> = ({
   useEffect(() => {
     const fetchData = async () => {
       const response = await zally.getRules();
-      const filterdRules = response.filter(item => item.type !== 'HINT');
+      const filterdRules = response.filter((item) => item.type !== "HINT");
       setRules(filterdRules);
     };
     fetchData();
   }, [zally]);
-
-  if (!rules.length) {
-    return <Loading />;
-  }
 
   return (
     <S.Drawer
@@ -59,6 +55,8 @@ export const Rules: React.VFC<RulesProps> = ({
           />
         </Box>
       ))}
+
+      {!rules.length && <Loading />}
     </S.Drawer>
   );
 };

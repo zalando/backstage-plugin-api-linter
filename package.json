@@ -11,7 +11,6 @@
     "types": "dist/index.d.ts"
   },
   "scripts": {
-    "dev": "scripts/run.sh yarn-all",
     "build": "backstage-cli plugin:build",
     "start": "backstage-cli plugin:serve",
     "lint": "backstage-cli lint",
@@ -35,7 +34,7 @@
     "react-dom": "^16.13.1",
     "react-router-dom": "^6.2.2",
     "react-use": "^17.3.2",
-    "swagger-ui-react": "^4.8.1"
+    "swagger-ui-react": "^4.12.0"
   },
   "devDependencies": {
     "@backstage/cli": "^0.14.1",

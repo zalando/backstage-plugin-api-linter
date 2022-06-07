@@ -73,6 +73,7 @@ export const APILinter: React.FC<APILinterProps> = ({
       .catch((err) => {
         setError(err.message);
         setSchemaInput("");
+        setLoading(false);
       })
       .then((res) => {
         setResponse(res as ViolationsResponse);
@@ -109,7 +110,10 @@ export const APILinter: React.FC<APILinterProps> = ({
           setSchemaInput(handleJsonParsing(data.api_definition));
           setSchemaStorage(data.api_definition);
         })
-        .catch((err: Error) => setError(err.message));
+        .catch((err: Error) => {
+          setError(err.message);
+          setLoading(false);
+        });
     }
   }, [zally, externalId, setSchemaStorage]);
 

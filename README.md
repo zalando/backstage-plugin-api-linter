@@ -16,7 +16,15 @@ You can also serve the plugin in isolation by running `yarn start` in the plugin
 This method of serving the plugin provides quicker iteration speed and a faster startup and hot reloads.
 It is only meant for local development, and the setup for it can be found inside the [/dev](./dev) directory.
 
-## TBD Config/Authentication
+## Setup 
+
+~~~yaml 
+proxy:
+  '/api-linter':
+    target: https://infrastructure-api-linter.zalandoapis.com
+    headers:
+      Authorization: Bearer ${API_LINTER_TOKEN}
+~~~
 
 
 ## Using ApiLinter:

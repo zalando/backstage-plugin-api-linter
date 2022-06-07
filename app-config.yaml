@@ -1,64 +1,16 @@
 organization:
   name: Zalando
 
-# # Frontend configuration
-#
-# This section contains the configuration properties solemnly used by the
-# frontend containing all frontend plugin specific configurations. Please use
-# section [feature](#feature) to define feature switches that may by shared
-# between frontend and backend or multiple plugins.
 app:
-  title: ApiLinter
-  baseUrl: http://localhost:3000
-  zally: https://infrastructure-api-linter.zalandoapis.com
-
-backend:
-  baseUrl: https://infrastructure-api-linter.zalandoapis.com
-  tokenInfoEndpoint: https://info.services.auth.zalando.com/oauth2/tokeninfo
-  listen:
-    port: 8081
-  role: server
-
-  cors:
-    origin: http://localhost:3000
-    methods: [GET, PUT, POST, DELETE, HEAD, PATCH]
-    credentials: true
- 
-
-features:
-  googleAnalytics:
-    trackingId: #UA-103559811-13
-    debug: false #true
-    namespaceUUID: #378ae730-998b-4a7a-ac53-996d0dc5bfd7
-
-auth:
-  providers:
-    oauth2:
-      authorizationUrl: https://identity.zalando.com/oauth2/authorize
-      tokenUrl: http://localhost:8081/token
-      usersApiUrl: https://users.auth.zalando.com/api/self
-      credentialsDir: /meta/credentials
-      credentialsName: employee
-      jwtSigningKey: "-no-default-key-"
-
-apilinter:
-  domain: https://infrastructure-api-linter.zalandoapis.com
+  title: Api Linter
+  baseUrl: http://localhost:3030
 
 proxy:
-  "/api-linter":
+  '/api-linter':
     target: https://infrastructure-api-linter.zalandoapis.com
     headers:
-      Authorization:
-        $env: TOKEN
-
+      Authorization: Bearer ${API_LINTER_TOKEN}
 
 release:
   version: 0.0.0
 
-integrations:
-  github:
-    - host: github.com
-    - host: github.bus.zalan.do
-      apiBaseUrl: https://github.bus.zalan.do/api/v3
-  gitlab:
-    - host: gitlab.com

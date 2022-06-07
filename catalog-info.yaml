@@ -1,0 +1,15 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: api-linter-plugin
+  description: |
+    Backstage plugin to linter APIs
+  annotations:
+    github.com/project-slug: zalando/api-linter
+  tags:
+    - plugin
+    - api
+spec:
+  type: library
+  owner: Zalando
+  lifecycle: experimental

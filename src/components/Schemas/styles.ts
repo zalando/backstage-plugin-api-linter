@@ -93,7 +93,7 @@ export const ViolationsWrapper = styled(Paper)(({ theme }) => ({
 }));
 
 export const Button = styled(ButtonUI)(
-  ({ theme, border = false }: { theme: BackstageTheme; border: boolean }) => ({
+  ({ theme, border = '' }: { theme: BackstageTheme; border: string }) => ({
     marginBottom: 4,
     marginRight: 4,
     color: "#DE7C02",
