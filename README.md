@@ -60,10 +60,10 @@ proxy:
 ## How to track user behaviour
 
 We are currently using Google Analytics for tracking the user behavior.
-To track the plugin you can pass your google Analytics functions as props to the `APILinterPage` component.
+To track the plugin you can pass your google Analytics functions as props to the `APILinter` component.
 
 ~~~javascript
-    <APILinterPage
+    <APILinter
       sendEvent={PluginTracking.sendEvent}
       sendPageView={PluginTracking.sendPageView}
       eventInfo={{

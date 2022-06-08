@@ -1,2 +1,2 @@
 export { APILinterPlugin } from './plugin';
-export { APILinter } from './components/APILinterPage';
+export { APILinter } from './components/APILinter';

@@ -1,5 +1,5 @@
 import React from "react";
-import { APILinter } from "../APILinterPage";
+import { APILinter } from "../APILinter";
 import { ThemeProvider } from "@material-ui/core";
 import { lightTheme } from "@backstage/theme";
 import { renderInTestApp, TestApiProvider } from "@backstage/test-utils";
@@ -19,7 +19,7 @@ async function renderApp() {
   );
 }
 
-describe("APILinterPage", () => {
+describe("APILinter", () => {
   afterAll(() => {
     // @ts-ignore
     global.Storage.prototype.setItem.mockReset();
