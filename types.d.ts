@@ -25,4 +25,3 @@ interface ICommonEventInfo {
   plugin: string;
   eventCategory: string;
 }
-
