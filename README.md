@@ -57,7 +57,7 @@ Content
   </Content>
 ~~~
 
-<img src='./docs/lint.png' alt='api-linter screen shot'>
+<img src='./docs/linter.png' alt='api-linter screen shot'>
 
 
 ## How to track user behaviour
