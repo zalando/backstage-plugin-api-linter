@@ -20,7 +20,9 @@ It is only meant for local development, and the setup for it can be found inside
 
 Add the plugin to your frontend app: 
 
-`cd package/app && yarn add @zalando/api-linter-plugin`
+```
+cd package/app && yarn add @zalando/api-linter-plugin
+```
 
 On your `app-config.yaml` configure the proxy endpoint of the plugin.
 
@@ -33,6 +35,7 @@ proxy:
 
 #### Using ApiLinter:
 
+With tabbed layout:
 ~~~javascript
   <TabbedLayout>
     <TabbedLayout.Route path="/" title='another title'>
@@ -47,14 +50,14 @@ proxy:
       </TabbedLayout.Route>
   </TabbedLayout>
 ~~~
-
+Content
 ~~~javascript
  <Content>
     <APILinter />
   </Content>
 ~~~
 
-<img src='./docs/linter.png' alt='api-linter screen shot'>
+<img src='./docs/lint.png' alt='api-linter screen shot'>
 
 
 ## How to track user behaviour
@@ -77,7 +80,7 @@ To track the plugin you can pass your google Analytics functions as props to the
 
 - sendEvent is:
 
-```
+~~~javascript
 function sendEvent(args: IEventTracking) {
   GoogleAnalytics.event({
     plugin: args.plugin,
@@ -86,36 +89,36 @@ function sendEvent(args: IEventTracking) {
     label: args.eventLabel,
   });
 }
-```
+~~~
 
-```
+~~~javascript
 interface IEventTracking {
   plugin: string;
   eventLabel: string;
   eventAction: string;
   eventCategory: string;
 }
-```
+~~~
 
 - sendPageView is:
 
-```
+~~~javascript
  function sendPageView() {
     GoogleAnalytics.set({ page: window.location.pathname });
     GoogleAnalytics.pageview(window.location.pathname + window.location.search);
   }
-```
+~~~
 
 `VoidFunction`
 
 - eventInfo is:
 
-```
+~~~javascript
 interface ICommonEventInfo {
   plugin: string;
   eventCategory: string;
 };
-```
+~~~
 
 eventInfo will be the same for all events
 
