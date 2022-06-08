@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useApi } from "@backstage/core-plugin-api";
-import { Rule, zallyApiRef } from "../../api";
+import { zallyApiRef } from "../../api";
 import { Box, Button, Typography } from "@material-ui/core";
 import { Loading } from "../Loading";
 import { DetailsCard } from "./components/DetailsCard";
 import * as S from "./styles";
+import { Rule } from "../../api/types";
 
 type RulesProps = {
   openRules: boolean;
@@ -13,7 +14,7 @@ type RulesProps = {
   event?: ICommonEventInfo;
 };
 
-export const Rules: React.VFC<RulesProps> = ({
+export const Rules: React.FC<RulesProps> = ({
   openRules,
   toggleDrawer,
   sendEvent,
