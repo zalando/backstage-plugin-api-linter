@@ -15,5 +15,8 @@ lerna-debug.log*
 .vsls.json
 .project
 
+dist
+dist-types
+
 # run
 /run
