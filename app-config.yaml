@@ -5,6 +5,9 @@ app:
   title: Api Linter
   baseUrl: http://localhost:3030
 
+backend:
+  baseUrl: http://localhost:8081
+
 proxy:
   '/api-linter':
     target: https://infrastructure-api-linter.zalandoapis.com

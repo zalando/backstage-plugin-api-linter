@@ -18,16 +18,20 @@ It is only meant for local development, and the setup for it can be found inside
 
 ## Setup 
 
+Add the plugin to your frontend app: 
+
+`cd package/app && yarn add @zalando/api-linter-plugin`
+
+On your `app-config.yaml` configure the proxy endpoint of the plugin.
+
 ~~~yaml 
 proxy:
-  '/api-linter':
+ '/api-linter':
     target: https://infrastructure-api-linter.zalandoapis.com
-    headers:
-      Authorization: Bearer ${API_LINTER_TOKEN}
+    allowedHeaders: ['Authorization']
 ~~~
 
-
-## Using ApiLinter:
+#### Using ApiLinter:
 
 ~~~javascript
   <TabbedLayout>
