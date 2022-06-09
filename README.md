@@ -21,7 +21,7 @@ It is only meant for local development, and the setup for it can be found inside
 Add the plugin to your frontend app: 
 
 ```
-cd package/app && yarn add @zalando/api-linter-plugin
+cd package/app && yarn add @zalando/backstage-plugin-api-linter
 ```
 
 On your `app-config.yaml` configure the proxy endpoint of the plugin.
@@ -108,8 +108,6 @@ interface IEventTracking {
     GoogleAnalytics.pageview(window.location.pathname + window.location.search);
   }
 ~~~
-
-
 
 - eventInfo is:
 
