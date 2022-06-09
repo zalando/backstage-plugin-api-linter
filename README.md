@@ -109,7 +109,7 @@ interface IEventTracking {
   }
 ~~~
 
-`VoidFunction`
+
 
 - eventInfo is:
 
