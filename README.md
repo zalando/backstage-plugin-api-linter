@@ -92,7 +92,7 @@ function sendEvent(args: IEventTracking) {
 ~~~
 
 ~~~javascript
-interface IEventTracking {
+type IEventTracking {
   plugin: string;
   eventLabel: string;
   eventAction: string;
@@ -112,7 +112,7 @@ interface IEventTracking {
 - eventInfo is:
 
 ~~~javascript
-interface ICommonEventInfo {
+type ICommonEventInfo {
   plugin: string;
   eventCategory: string;
 };

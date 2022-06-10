@@ -11,13 +11,14 @@ import "brace/mode/json";
 import "brace/snippets/yaml";
 import "brace/snippets/json";
 import "swagger-ui-react/swagger-ui.css";
-import { Box, Button, Typography } from "@material-ui/core";
+import { Box, Typography } from "@material-ui/core";
 import { Violations } from "../Violations";
-import { ViolationsResponse } from "../../api";
+import { ViolationsResponse } from "../../api/types";
 import LinkIcon from "@material-ui/icons/Link";
 import SwaggerUI from "swagger-ui-react";
 
 import * as S from "./styles";
+import { ICommonEventInfo, IEventTracking } from "../../event-types";
 
 type SchemasProps = {
   onInputChange: (value: string) => void;
@@ -34,7 +35,7 @@ type SchemasProps = {
   handleClearAll: VoidFunction;
 };
 
-export const Schemas: React.VFC<SchemasProps> = ({
+export const Schemas: React.FC<SchemasProps> = ({
   onInputChange,
   onSubmit,
   schemaValue,

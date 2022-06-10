@@ -1,9 +1,6 @@
 import {
-  ConfigApi,
   createApiRef,
   DiscoveryApi,
-  IdentityApi,
-  OAuthApi,
 } from "@backstage/core-plugin-api";
 import {
   Rule,
@@ -19,27 +16,20 @@ export const zallyApiRef = createApiRef<ZallyApiType>({
 
 interface Apis {
   discoveryApi: DiscoveryApi;
-  identityApi: IdentityApi;
-  configApi: ConfigApi;
 }
 
 export class ZallyApi implements ZallyApiType {
   private readonly discoveryApi: DiscoveryApi;
-  private readonly identityApi: IdentityApi;
-  private readonly configApi: ConfigApi;
 
   constructor(apis: Apis) {
     this.discoveryApi = apis.discoveryApi;
-    this.identityApi = apis.identityApi;
-    this.configApi = apis.configApi;
   }
 
   async getRules(): Promise<Rule[]> {
-    const { token, serviceUrl } = await this.getUrlAndToken("supported-rules");
+    const serviceUrl = await this.getServiceUrl("supported-rules");
 
     const response = await fetch(serviceUrl, {
       headers: {
-        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
       credentials: "include",
@@ -52,11 +42,10 @@ export class ZallyApi implements ZallyApiType {
   async getApiViolations(
     request: ViolationsByUrl | ViolationsByString
   ): Promise<ViolationsResponse> {
-    const { token, serviceUrl } = await this.getUrlAndToken("api-violations");
+    const serviceUrl = await this.getServiceUrl("api-violations");
 
     const response = await fetch(serviceUrl, {
       headers: {
-        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
       credentials: "include",
@@ -72,11 +61,10 @@ export class ZallyApi implements ZallyApiType {
   }
 
   async getSchemaAndViolations(id: string) {
-    const { token, serviceUrl } = await this.getUrlAndToken("api-violations");
+    const serviceUrl = await this.getServiceUrl("api-violations");
 
     const response = await fetch(`${serviceUrl}/${id}`, {
       headers: {
-        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
       credentials: "include",
@@ -85,11 +73,10 @@ export class ZallyApi implements ZallyApiType {
     return response.json();
   }
 
-  private async getUrlAndToken(path: string) {
-    const { token } = await this.identityApi.getCredentials();
+  private async getServiceUrl(path: string) {
     const url = await this.discoveryApi.getBaseUrl("proxy");
 
     const serviceUrl = `${url}/api-linter/${path}`;
-    return { token, serviceUrl };
+    return serviceUrl;
   }
 }

@@ -6,6 +6,7 @@ import { Loading } from "../Loading";
 import { DetailsCard } from "./components/DetailsCard";
 import * as S from "./styles";
 import { Rule } from "../../api/types";
+import { ICommonEventInfo, IEventTracking } from "../../event-types";
 
 type RulesProps = {
   openRules: boolean;

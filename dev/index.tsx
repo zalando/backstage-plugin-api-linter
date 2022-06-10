@@ -1,7 +1,7 @@
 import React from "react";
 import { createDevApp } from "@backstage/dev-utils";
 import { APILinterPlugin } from "../src/plugin";
-import { APILinter } from "../src/components/APILinter";
+import { APILinter } from "../src";
 
 createDevApp()
   .registerPlugin(APILinterPlugin)

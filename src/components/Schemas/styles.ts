@@ -1,4 +1,3 @@
-import { BackstageTheme } from "@backstage/theme";
 import {
   Box,
   Link,
@@ -93,7 +92,7 @@ export const ViolationsWrapper = styled(Paper)(({ theme }) => ({
 }));
 
 export const Button = styled(ButtonUI)(
-  ({ theme, border = '' }: { theme: BackstageTheme; border: string }) => ({
+  ({ border = "" }: { border: string }) => ({
     marginBottom: 4,
     marginRight: 4,
     color: "#DE7C02",
