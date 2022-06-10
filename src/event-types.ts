@@ -1,4 +1,4 @@
-interface IEventTracking {
+export type IEventTracking = {
   /**
    * Plugin name
    * @example `"create-repository"`
@@ -21,7 +21,7 @@ interface IEventTracking {
   eventCategory: string;
 }
 
-interface ICommonEventInfo {
+export type ICommonEventInfo = {
   plugin: string;
   eventCategory: string;
 }

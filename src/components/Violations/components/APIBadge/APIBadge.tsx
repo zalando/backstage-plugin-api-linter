@@ -1,13 +1,14 @@
-import { Typography } from '@material-ui/core';
-import React from 'react';
-import { ViolationCount } from '../../../../api';
+import { Typography } from "@material-ui/core";
+import React from "react";
+import { ViolationCount } from "../../../../api/types";
 import {
   perfectApi,
   mayViolations,
   shouldViolations,
   mustViolations,
-} from './texts';
-import * as S from './styles';
+} from "./texts";
+import * as S from "./styles";
+import { ICommonEventInfo, IEventTracking } from "../../../../event-types";
 
 type APIBadgeProps = {
   violations: ViolationCount;
@@ -35,7 +36,7 @@ export const APIBadge: React.VFC<APIBadgeProps> = ({
             <S.Badge
               paint="must"
               data-testid="must"
-              onMouseEnter={() => handleEventEmitter('api badge', 'must')}
+              onMouseEnter={() => handleEventEmitter("api badge", "must")}
             />
           ),
           text: mustViolations,
@@ -46,7 +47,7 @@ export const APIBadge: React.VFC<APIBadgeProps> = ({
             <S.Badge
               paint="should"
               data-testid="should"
-              onMouseEnter={() => handleEventEmitter('api badge', 'should')}
+              onMouseEnter={() => handleEventEmitter("api badge", "should")}
             />
           ),
           text: shouldViolations,
@@ -57,7 +58,7 @@ export const APIBadge: React.VFC<APIBadgeProps> = ({
             <S.Badge
               paint="may"
               data-testid="may"
-              onMouseEnter={() => handleEventEmitter('api badge', 'may')}
+              onMouseEnter={() => handleEventEmitter("api badge", "may")}
             />
           ),
           text: mayViolations,
@@ -67,7 +68,7 @@ export const APIBadge: React.VFC<APIBadgeProps> = ({
           icon: (
             <S.PerfectApiBadge
               data-testid="perfect"
-              onMouseEnter={() => handleEventEmitter('api badge', 'perfect')}
+              onMouseEnter={() => handleEventEmitter("api badge", "perfect")}
             />
           ),
           text: perfectApi,
@@ -81,7 +82,7 @@ export const APIBadge: React.VFC<APIBadgeProps> = ({
       {icon}
       <Typography
         variant="body2"
-        onMouseEnter={() => handleEventEmitter('api badge text')}
+        onMouseEnter={() => handleEventEmitter("api badge text")}
       >
         {text}
       </Typography>

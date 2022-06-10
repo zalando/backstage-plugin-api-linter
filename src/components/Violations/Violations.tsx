@@ -1,5 +1,6 @@
 import React from "react";
-import { ViolationsResponse } from "../../api";
+import { ViolationsResponse } from "../../api/types";
+import { ICommonEventInfo, IEventTracking } from "../../event-types";
 import { Loading } from "../Loading";
 import { ViolationsCard } from "./components";
 import * as S from "./styles";

@@ -13,6 +13,7 @@ import {
   ViolationsByUrl,
   ViolationsResponse,
 } from "../../api/types";
+import { ICommonEventInfo, IEventTracking } from "../../event-types";
 
 type APILinterProps = {
   sendEvent?: (args: IEventTracking) => void;

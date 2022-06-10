@@ -1,14 +1,15 @@
-import React from 'react';
-import { Box, CardContent, Typography } from '@material-ui/core';
-import { ViolationsResponse } from '../../../../api';
-import LinkIcon from '@material-ui/icons/Link';
-import * as S from './styles';
-import { Button } from './styles';
-import { addIdForPermalink } from '../../helpers';
-import { APIBadge } from '../APIBadge';
-import { aggregateByViolation } from '../../../../helpers';
-import { ViolationsDetails } from './ViolationsDetails';
-import { Chip } from '../../../Rules/components/DetailsCard/style';
+import React from "react";
+import { Box, CardContent, Typography } from "@material-ui/core";
+import { ViolationsResponse } from "../../../../api/types";
+import LinkIcon from "@material-ui/icons/Link";
+import * as S from "./styles";
+import { Button } from "./styles";
+import { addIdForPermalink } from "../../helpers";
+import { APIBadge } from "../APIBadge";
+import { aggregateByViolation } from "../../../../helpers";
+import { ViolationsDetails } from "./ViolationsDetails";
+import { Chip } from "../../../Rules/components/DetailsCard/style";
+import { ICommonEventInfo, IEventTracking } from "../../../../event-types";
 
 type ViolationsCardProps = ViolationsResponse & {
   onExternalIdChange: (v: string) => void;
@@ -34,7 +35,7 @@ export const ViolationsCard: React.FC<ViolationsCardProps> = ({
   const aggregatedViolations = aggregateByViolation(violations);
 
   const getRuleNumberFromLink = (link: string) =>
-    link.split('/')[link.split('/').length - 1];
+    link.split("/")[link.split("/").length - 1];
 
   return (
     <Box display="flex" flexDirection="column">
@@ -83,7 +84,7 @@ export const ViolationsCard: React.FC<ViolationsCardProps> = ({
                   onClick={() =>
                     sendEvent?.({
                       ...(event as ICommonEventInfo),
-                      eventLabel: `on click violation card tag: ${'must'.toLocaleLowerCase()}`,
+                      eventLabel: `on click violation card tag: ${"must".toLocaleLowerCase()}`,
                       eventAction: `clicks on violation card tag`,
                     })
                   }
@@ -119,7 +120,7 @@ export const ViolationsCard: React.FC<ViolationsCardProps> = ({
               </CardContent>
             </S.Card>
           );
-        },
+        }
       )}
     </Box>
   );

@@ -1,15 +1,17 @@
-import React from 'react';
-import Alert from '@material-ui/lab/Alert';
-import Collapse from '@material-ui/core/Collapse';
-import CloseIcon from '@material-ui/icons/Close';
-import { useLocalStorage } from 'react-use';
-import * as S from './styles';
+import React, { ReactNode } from "react";
+import Alert from "@material-ui/lab/Alert";
+import Collapse from "@material-ui/core/Collapse";
+import CloseIcon from "@material-ui/icons/Close";
+import { useLocalStorage } from "react-use";
+import * as S from "./styles";
+import { IEventTracking } from "../../event-types";
 
 type BannerProps = {
   sendEvent: ((args: IEventTracking) => void) | undefined;
-  variant: 'standard' | 'filled' | 'outlined';
-  severity: 'success' | 'info' | 'warning' | 'error';
+  variant: "standard" | "filled" | "outlined";
+  severity: "success" | "info" | "warning" | "error";
   id: string;
+  children: ReactNode;
 };
 
 export const Banner: React.FC<BannerProps> = ({

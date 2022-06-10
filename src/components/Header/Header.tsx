@@ -3,6 +3,7 @@ import { Box } from "@material-ui/core";
 import * as S from "./styles";
 
 import { Banner } from "../Banner";
+import { ICommonEventInfo, IEventTracking } from "../../event-types";
 
 type HeaderProps = {
   sendEvent: ((args: IEventTracking) => void) | undefined;
