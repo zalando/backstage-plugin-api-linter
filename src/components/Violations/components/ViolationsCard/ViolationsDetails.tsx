@@ -1,8 +1,8 @@
-import { Button, Collapse } from '@material-ui/core';
-import React, { useState } from 'react';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import ArrowDropUp from '@material-ui/icons/ArrowDropUp';
-import * as S from './styles';
+import { Button, Collapse } from "@material-ui/core";
+import React, { useState } from "react";
+import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
+import ArrowDropUp from "@material-ui/icons/ArrowDropUp";
+import * as S from "./styles";
 
 type ViolationsDetailsProps = {
   paths: string[];
@@ -26,11 +26,11 @@ export const ViolationsDetails: React.VFC<ViolationsDetailsProps> = ({
       {hasMoreThanOnePath(paths) ? (
         <>
           <Button
-            onClick={() => setCollapse(prev => !prev)}
+            onClick={() => setCollapse((prev) => !prev)}
             color="primary"
-            style={{ padding: '6px 0px' }}
+            style={{ padding: "6px 0px" }}
           >
-            {collapse ? 'hide' : 'show'} {paths.length} violation's details{' '}
+            {collapse ? "hide" : "show"} {paths.length} violation's details{" "}
             {collapse ? <ArrowDropUp /> : <ArrowDropDownIcon />}
           </Button>
           <Collapse in={collapse}>
@@ -52,7 +52,7 @@ export const ViolationsDetails: React.VFC<ViolationsDetailsProps> = ({
               <S.DetailsTitle>
                 <strong>Locations:</strong>
               </S.DetailsTitle>
-              {paths.map(path => (
+              {paths.map((path) => (
                 <S.ContentWrapper>
                   <S.CardText variant="subtitle1">{path}</S.CardText>
                 </S.ContentWrapper>

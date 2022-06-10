@@ -16,9 +16,9 @@ You can also serve the plugin in isolation by running `yarn start` in the plugin
 This method of serving the plugin provides quicker iteration speed and a faster startup and hot reloads.
 It is only meant for local development, and the setup for it can be found inside the [/dev](./dev) directory.
 
-## Setup 
+## Setup
 
-Add the plugin to your frontend app: 
+Add the plugin to your frontend app:
 
 ```
 cd package/app && yarn add @zalando/backstage-plugin-api-linter
@@ -26,61 +26,59 @@ cd package/app && yarn add @zalando/backstage-plugin-api-linter
 
 On your `app-config.yaml` configure the proxy endpoint of the plugin.
 
-~~~yaml 
+```yaml
 proxy:
- '/api-linter':
+  "/api-linter":
     target: https://infrastructure-api-linter.zalandoapis.com
-    allowedHeaders: ['Authorization']
-~~~
+    allowedHeaders: ["Authorization"]
+```
 
 #### Using ApiLinter:
 
 With tabbed layout:
-~~~javascript
-  <TabbedLayout>
-    <TabbedLayout.Route path="/" title='another title'>
-     <AnotherExampleComponent />
-    </TabbedLayout.Route>
-      <TabbedLayout.Route
-        path="/linter"
-        title="LINTER"
-        data-id="api-linter"
-      >
-        <APILinter />
-      </TabbedLayout.Route>
-  </TabbedLayout>
-~~~
-Content
-~~~javascript
- <Content>
+
+```javascript
+<TabbedLayout>
+  <TabbedLayout.Route path="/" title="another title">
+    <AnotherExampleComponent />
+  </TabbedLayout.Route>
+  <TabbedLayout.Route path="/linter" title="LINTER" data-id="api-linter">
     <APILinter />
-  </Content>
-~~~
+  </TabbedLayout.Route>
+</TabbedLayout>
+```
+
+Content
+
+```javascript
+<Content>
+  <APILinter />
+</Content>
+```
 
 <img src='./docs/linter.png' alt='api-linter screen shot'>
-
 
 ## How to track user behaviour
 
 We are currently using Google Analytics for tracking the user behavior.
 To track the plugin you can pass your google Analytics functions as props to the `APILinter` component.
 
-~~~javascript
-    <APILinter
-      sendEvent={PluginTracking.sendEvent}
-      sendPageView={PluginTracking.sendPageView}
-      eventInfo={{
-        plugin: 'api-linter',
-        eventCategory: 'API linter page',
-      }}
-    />
-~~~
+```javascript
+<APILinter
+  sendEvent={PluginTracking.sendEvent}
+  sendPageView={PluginTracking.sendPageView}
+  eventInfo={{
+    plugin: "api-linter",
+    eventCategory: "API linter page",
+  }}
+/>
+```
 
 #### where
 
 - sendEvent is:
 
-~~~javascript
+```javascript
 function sendEvent(args: IEventTracking) {
   GoogleAnalytics.event({
     plugin: args.plugin,
@@ -89,34 +87,34 @@ function sendEvent(args: IEventTracking) {
     label: args.eventLabel,
   });
 }
-~~~
+```
 
-~~~javascript
+```javascript
 type IEventTracking {
   plugin: string;
   eventLabel: string;
   eventAction: string;
   eventCategory: string;
 }
-~~~
+```
 
 - sendPageView is:
 
-~~~javascript
- function sendPageView() {
-    GoogleAnalytics.set({ page: window.location.pathname });
-    GoogleAnalytics.pageview(window.location.pathname + window.location.search);
-  }
-~~~
+```javascript
+function sendPageView() {
+  GoogleAnalytics.set({ page: window.location.pathname });
+  GoogleAnalytics.pageview(window.location.pathname + window.location.search);
+}
+```
 
 - eventInfo is:
 
-~~~javascript
+```javascript
 type ICommonEventInfo {
   plugin: string;
   eventCategory: string;
 };
-~~~
+```
 
 eventInfo will be the same for all events
 

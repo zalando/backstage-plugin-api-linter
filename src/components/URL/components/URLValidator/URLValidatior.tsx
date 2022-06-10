@@ -5,8 +5,8 @@ import {
   DialogContent,
   DialogContentText,
   TextField,
-} from '@material-ui/core';
-import React from 'react';
+} from "@material-ui/core";
+import React from "react";
 
 type URLValidatorProps = {
   onSubmit: () => void;
@@ -42,8 +42,8 @@ export const URLValidator: React.VFC<URLValidatorProps> = ({
           onFocus={() =>
             sendEvent?.({
               ...(event as ICommonEventInfo),
-              eventLabel: 'onFocus import URL input',
-              eventAction: 'focus on import URL input',
+              eventLabel: "onFocus import URL input",
+              eventAction: "focus on import URL input",
             })
           }
           error={!!error}
@@ -62,7 +62,7 @@ export const URLValidator: React.VFC<URLValidatorProps> = ({
       </DialogContentText>
     </DialogContent>
 
-    <DialogActions style={{ padding: '0 24px 50px 24px' }}>
+    <DialogActions style={{ padding: "0 24px 50px 24px" }}>
       <Button variant="outlined" onClick={handleClose}>
         Cancel
       </Button>

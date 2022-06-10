@@ -1,7 +1,7 @@
-import { CardContent, Typography } from '@material-ui/core';
-import React from 'react';
-import { Link } from '@backstage/core-components';
-import * as S from './style';
+import { CardContent, Typography } from "@material-ui/core";
+import React from "react";
+import { Link } from "@backstage/core-components";
+import * as S from "./style";
 
 type DetailsCardProps = {
   key: string;
@@ -26,7 +26,7 @@ export const DetailsCard: React.VFC<DetailsCardProps> = ({
   event,
   isViolation,
 }) => {
-  const cardType = isViolation ? 'violation' : 'rule';
+  const cardType = isViolation ? "violation" : "rule";
   return (
     <S.Card
       key={key}
@@ -66,13 +66,13 @@ export const DetailsCard: React.VFC<DetailsCardProps> = ({
             })
           }
         >
-          <Link style={{ wordBreak: 'break-all' }} to={link}>
+          <Link style={{ wordBreak: "break-all" }} to={link}>
             Rule: {link}
           </Link>
         </Typography>
 
         {pointer && (
-          <S.CardText style={{ wordBreak: 'break-all' }} variant="subtitle1">
+          <S.CardText style={{ wordBreak: "break-all" }} variant="subtitle1">
             Location: {pointer}
           </S.CardText>
         )}
