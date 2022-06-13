@@ -3,7 +3,6 @@ allow_concurrent_steps: false
 pipeline:
   - id: format
     type: script
-    event: pull_request
     vm_config:
       type: linux
       image: "cdp-runtime/nodejs-14"
@@ -14,7 +13,6 @@ pipeline:
         cmd: yarn lint
   - id: test
     type: script
-    event: pull_request
     vm_config:
       type: linux
       image: "cdp-runtime/nodejs-14"
@@ -25,7 +23,6 @@ pipeline:
         cmd: yarn test
   - id: build
     type: script
-    event: pull_request
     vm_config:
       type: linux
       image: "cdp-runtime/nodejs-14"
