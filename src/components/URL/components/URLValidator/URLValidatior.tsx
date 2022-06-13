@@ -7,6 +7,7 @@ import {
   TextField,
 } from "@material-ui/core";
 import React from "react";
+import { ICommonEventInfo, IEventTracking } from "../../../../event-types";
 
 type URLValidatorProps = {
   onSubmit: () => void;
