@@ -34,6 +34,13 @@ proxy:
 ```
 
 #### Using ApiLinter:
+First export the plugin on `app/App.tsx` file
+
+~~~javascript
+export { APILinterPlugin } from '@builder-knowledge/backstage-plugin-api-linter';
+~~~
+
+Then use the component on your application!
 
 With tabbed layout:
 
