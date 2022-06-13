@@ -34,6 +34,7 @@ proxy:
 ```
 
 #### Using ApiLinter:
+
 First export the plugin on `app/App.tsx` file
 
 ~~~javascript
