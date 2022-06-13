@@ -1,33 +1,35 @@
 version: "2017-09-20"  # Don't change this!
 
 pipeline:
-- id: format
-  depends_on: []
-  type: script
-  vm_config:
-    type: linux
-    image: "cdp-runtime/nodejs-14"
-  commands:
-    - desc: lint & tsc.
-      cmd: yarn lint && yarn tsc;
+  - id: format
+    type: script
+    event: pull_request
+    vm_config:
+      type: linux
+      image: "cdp-runtime/nodejs-14"
+    commands:
+      - desc: lint & tsc.
+        cmd: yarn lint && yarn tsc;
 
-- id: test
-  depends_on: []
-  type: script
-  vm_config:
-    type: linux
-    image: "cdp-runtime/nodejs-14"
-  commands:
-    - desc: Install dependencies
-      cmd: yarn install;
-    - desc: running tests
-      cmd: yarn test
+  - id: test
+    type: script
+    event: pull_request
+    vm_config:
+      type: linux
+      image: "cdp-runtime/nodejs-14"
+    commands:
+      - desc: Install dependencies
+        cmd: yarn install;
+      - desc: running tests
+        cmd: yarn test
 
-- id: build  
-  vm_config:
-    type: linux
-    image: "cdp-runtime/nodejs-14"
-  commands:
-    - desc: building
-      cmd: yarn build
+  - id: build  
+    type: script
+    event: pull_request
+    vm_config:
+      type: linux
+      image: "cdp-runtime/nodejs-14"
+    commands:
+      - desc: building
+        cmd: yarn build
 
