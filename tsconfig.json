@@ -2,6 +2,7 @@
   "extends": "@backstage/cli/config/tsconfig.json",
   "include": ["*/src", "**/*.ts", "dev"],
   "exclude": ["node_modules", "dist-types"],
+  "declaration": true,
   "compilerOptions": {
     "outDir": "dist-types",
     "rootDir": ".",
