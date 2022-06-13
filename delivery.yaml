@@ -1,4 +1,5 @@
 version: "2017-09-20" # Don't change this!
+allow_concurrent_steps: false
 pipeline:
   - id: format
     type: script
@@ -7,6 +8,8 @@ pipeline:
       type: linux
       image: "cdp-runtime/nodejs-14"
     commands:
+      - desc: Install
+        cmd: yarn install
       - desc: lint & tsc.
         cmd: yarn lint
   - id: test
@@ -27,5 +30,7 @@ pipeline:
       type: linux
       image: "cdp-runtime/nodejs-14"
     commands:
+      - desc: Install
+        cmd: yarn install
       - desc: building
         cmd: yarn build
