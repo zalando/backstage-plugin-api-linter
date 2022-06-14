@@ -20,7 +20,7 @@ pipeline:
       - desc: Install dependencies
         cmd: yarn install
       - desc: running tests
-        cmd: yarn test
+        cmd: yarn test src/
   - id: build
     type: script
     vm_config:
