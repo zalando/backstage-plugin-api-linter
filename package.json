@@ -21,7 +21,8 @@
     "diff": "backstage-cli plugin:diff",
     "prepack": "backstage-cli prepack",
     "postpack": "backstage-cli postpack",
-    "clean": "backstage-cli clean"
+    "clean": "backstage-cli clean",
+    "install:ci": "yarn add react"
   },
   "dependencies": {
     "@backstage/core-components": "^0.8.10",

@@ -19,7 +19,9 @@ pipeline:
     commands:
       - desc: Install dependencies
         cmd: yarn install
-      - desc: running tests
+      - desc: Install peer dependencies
+        cmd: yarn install:ci
+      - desc: Running tests
         cmd: yarn test -- --no-watch --silent --forceExit --detectOpenHandles --no-cache --coverage=false --runInBand
   - id: build
     type: script
@@ -29,7 +31,7 @@ pipeline:
     commands:
       - desc: Install
         cmd: yarn install
-      - desc: running tsc
+      - desc: Running tsc
         cmd: yarn tsc
-      - desc: building
+      - desc: Building
         cmd: yarn build
