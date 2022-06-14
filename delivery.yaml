@@ -1,5 +1,5 @@
 version: "2017-09-20" # Don't change this!
-allow_concurrent_steps: false
+
 pipeline:
   - id: format
     type: script
@@ -30,6 +30,6 @@ pipeline:
       - desc: Install
         cmd: yarn install
       - desc: running tsc --declaration
-        cmd: yarn tsc
+        cmd: yarn tsc --project tsconfig.json
       - desc: building
         cmd: yarn build
