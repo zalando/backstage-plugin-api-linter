@@ -22,7 +22,7 @@
     "prepack": "backstage-cli prepack",
     "postpack": "backstage-cli postpack",
     "clean": "backstage-cli clean",
-    "install:ci": "yarn add react"
+    "install:ci": "yarn add react@16.13.1"
   },
   "dependencies": {
     "@backstage/core-components": "^0.8.10",
