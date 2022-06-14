@@ -29,7 +29,7 @@ pipeline:
     commands:
       - desc: Install
         cmd: yarn install
-      - desc: running tsc
+      - desc: running tsc --declaration
         cmd: yarn tsc
       - desc: building
         cmd: yarn build
