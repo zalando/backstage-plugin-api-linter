@@ -1,20 +1,18 @@
 version: "2017-09-20" # Don't change this!
-allow_concurrent_steps: false
+
 pipeline:
   - id: format
     type: script
-    event: pull_request
     vm_config:
       type: linux
       image: "cdp-runtime/nodejs-14"
     commands:
       - desc: Install
         cmd: yarn install
-      - desc: lint & tsc.
+      - desc: lint
         cmd: yarn lint
   - id: test
     type: script
-    event: pull_request
     vm_config:
       type: linux
       image: "cdp-runtime/nodejs-14"
@@ -22,15 +20,16 @@ pipeline:
       - desc: Install dependencies
         cmd: yarn install
       - desc: running tests
-        cmd: yarn test
+        cmd: yarn test -- --no-watch --silent --forceExit --detectOpenHandles --no-cache --coverage=false --runInBand
   - id: build
     type: script
-    event: pull_request
     vm_config:
       type: linux
       image: "cdp-runtime/nodejs-14"
     commands:
       - desc: Install
         cmd: yarn install
+      - desc: running tsc
+        cmd: yarn tsc
       - desc: building
         cmd: yarn build
