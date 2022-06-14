@@ -1,26 +1,6 @@
 version: "2017-09-20" # Don't change this!
 
 pipeline:
-  - id: format
-    type: script
-    vm_config:
-      type: linux
-      image: "cdp-runtime/nodejs-14"
-    commands:
-      - desc: Install
-        cmd: yarn install
-      - desc: lint & tsc.
-        cmd: yarn lint
-  - id: test
-    type: script
-    vm_config:
-      type: linux
-      image: "cdp-runtime/nodejs-14"
-    commands:
-      - desc: Install dependencies
-        cmd: yarn install
-      - desc: running tests
-        cmd: yarn test -- --no-watch --silent --forceExit --detectOpenHandles --no-cache --coverage=false --runInBand
   - id: build
     type: script
     vm_config:
@@ -29,7 +9,7 @@ pipeline:
     commands:
       - desc: Install
         cmd: yarn install
-      - desc: running tsc --declaration
-        cmd: yarn tsc --project tsconfig.json
+      - desc: running tsc 
+        cmd: yarn tsc --declaration
       - desc: building
         cmd: yarn build
