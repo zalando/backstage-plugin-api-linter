@@ -36,7 +36,6 @@
     "react": "^16.13.1",
     "react-ace": "^9.5.0",
     "react-dom": "^16.13.1",
-    "react-router-dom": "^6.2.2",
     "react-use": "^17.3.2",
     "swagger-ui-react": "^4.12.0"
   },
