@@ -1,4 +1,4 @@
-version: "2017-09-20" # Don't change this!
+version: "2017-09-20"  # Don't change this!
 
 pipeline:
   - id: build
@@ -9,7 +9,7 @@ pipeline:
     commands:
       - desc: Install
         cmd: yarn install
-      - desc: running tsc 
-        cmd: yarn tsc --declaration
+      - desc: running tsc
+        cmd: yarn tsc
       - desc: building
         cmd: yarn build
