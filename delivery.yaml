@@ -20,7 +20,7 @@ pipeline:
       - desc: Install dependencies
         cmd: yarn install
       - desc: running tests
-        cmd: yarn test src/
+        cmd: yarn test test -- --no-watch --silent --forceExit --detectOpenHandles --no-cache --coverage=false --runInBand
   - id: build
     type: script
     vm_config:
