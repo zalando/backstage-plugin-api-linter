@@ -16,6 +16,8 @@
     "start": "backstage-cli plugin:serve",
     "lint": "backstage-cli lint",
     "test": "backstage-cli test",
+    "tsc": "tsc",
+    "test:ci": "backstage-cli test -- --no-watch --silent --forceExit --detectOpenHandles --no-cache --coverage=false --runInBand",
     "diff": "backstage-cli plugin:diff",
     "prepack": "backstage-cli prepack",
     "postpack": "backstage-cli postpack",
