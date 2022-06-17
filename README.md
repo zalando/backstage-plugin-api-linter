@@ -1,22 +1,13 @@
-# API Linter
+# backstage-plugin-api-linter
 
-Welcome to the API Linter plugin!
+Welcome to the Backstage Plugin API Linter!
 
 API Linter is a quality assurance tool. Its main purpose is to check the compliance of API's specifications to a specific set of API's design rules.
 
-The service is able to lint the API specification in OpenAPI format. The result of the linting is a set of Violations. A violation contains information about the violated rule, its severity, and path of the violation in the specification document.
+The plugin is able to lint the API specification in OpenAPI format. The result of the linting is a set of Violations. A violation contains information about the violated rule, its severity, and path of the violation in the specification document.
 
 _This plugin was created through the Backstage CLI_
-
 ## Getting started
-
-Your plugin has been added to the example app in this repository, meaning you'll be able to access it by running `yarn start` in the root directory, and then navigating to [/api-linter](http://localhost:3000/api-linter).
-
-You can also serve the plugin in isolation by running `yarn start` in the plugin directory.
-This method of serving the plugin provides quicker iteration speed and a faster startup and hot reloads.
-It is only meant for local development, and the setup for it can be found inside the [/dev](./dev) directory.
-
-## Setup
 
 Add the plugin to your frontend app:
 
