@@ -1,0 +1,37 @@
+version: "2017-09-20" # Don't change this!
+
+pipeline:
+  - id: format
+    type: script
+    vm_config:
+      type: linux
+      image: "cdp-runtime/nodejs-14"
+    commands:
+      - desc: Install
+        cmd: yarn install
+      - desc: lint
+        cmd: yarn lint
+  - id: test
+    type: script
+    vm_config:
+      type: linux
+      image: "cdp-runtime/nodejs-14"
+    commands:
+      - desc: Install dependencies
+        cmd: yarn install
+      - desc: Install peer dependencies
+        cmd: yarn install:ci
+      - desc: Running tests
+        cmd: yarn test -- --no-watch --silent --forceExit --detectOpenHandles --no-cache --coverage=false --runInBand
+  - id: build
+    type: script
+    vm_config:
+      type: linux
+      image: "cdp-runtime/nodejs-14"
+    commands:
+      - desc: Install
+        cmd: yarn install
+      - desc: Running tsc
+        cmd: yarn tsc
+      - desc: Building
+        cmd: yarn build
