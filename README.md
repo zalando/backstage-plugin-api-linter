@@ -2,7 +2,7 @@
 
 Welcome to the Backstage Plugin API Linter!
 
-API Linter is a quality assurance tool. Its main purpose is to check the compliance of API's specifications to a specific set of API's design rules.
+API Linter is a quality assurance tool. Its main purpose is to check the compliance of API's specifications to Zalando's API rules.
 
 The plugin is able to lint the API specification in OpenAPI format. The result of the linting is a set of Violations. A violation contains information about the violated rule, its severity, and path of the violation in the specification document.
 
