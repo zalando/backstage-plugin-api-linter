@@ -10,22 +10,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-       # Setup .npmrc file to publish to npm
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - run: yarn install
-      - run: yarn install:ci
-      - run: yarn tsc
-      - run: yarn build
-      - run: yarn test -- --no-watch --silent --forceExit --detectOpenHandles --no-cache --coverage=false --runInBand
-
   publish-npm:
-    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -33,6 +18,11 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
+      - run: yarn install
+      - run: yarn install:ci
+      - run: yarn tsc
+      - run: yarn build
+      - run: yarn test -- --no-watch --silent --forceExit --detectOpenHandles --no-cache --coverage=false --runInBand
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
