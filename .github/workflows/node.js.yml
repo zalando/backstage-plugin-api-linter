@@ -30,3 +30,4 @@ jobs:
     - run: yarn tsc
     - run: yarn build
     - run: yarn test -- --no-watch --silent --forceExit --detectOpenHandles --no-cache --coverage=false --runInBand
+    
