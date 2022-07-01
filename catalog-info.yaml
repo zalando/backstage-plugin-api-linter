@@ -1,7 +1,7 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: api-linter-plugin
+  name: backstage-plugin-api-linter
   description: |
     Backstage plugin to linter APIs
   annotations:
