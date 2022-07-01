@@ -1,16 +1,23 @@
 {
-  "name": "@builder-knowledge/backstage-plugin-api-linter",
+  "name": "@zalando/backstage-plugin-api-linter",
   "version": "1.0.0",
+  "description": "API Linter is a quality assurance tool that checks the compliance of API's specifications to Zalando's API rules.",
   "main": "src/index.ts",
   "types": "src/index.ts",
   "license": "MIT",
   "private": false,
   "publishConfig": {
-    "access": "public",
-    "main": "dist/index.esm.js",
-    "types": "dist/index.d.ts",
-    "registry": "https://maven.zalando.net/repository/npm-internal/"
+    "registry": "https://registry.npmjs.org/"
   },
+  "keywords": [
+    "zalando",
+    "javascript",
+    "backstage",
+    "plugin",
+    "typescript",
+    "linter",
+    "API"
+  ],
   "scripts": {
     "build": "backstage-cli plugin:build",
     "start": "backstage-cli plugin:serve",
@@ -65,5 +72,22 @@
   },
   "files": [
     "dist"
+  ],
+  "maintainers": [
+    "Natalya Peixoto <natalya.peixoto@zalando.de>",
+    "Ewa <ewa.maslocha@zalando.de>",
+    "Tronje Krop <tronje.krop@zalando.de>"
+  ],
+  "homepage": "https://github.com/zalando/backstage-api-linter-plugin#readme",
+  "contributors": [
+    {
+      "name": "Natalya Peixoto",
+      "email": "natalya.peixoto@zalando.de",
+      "url": "https://github.com/natalyapeixoto"
+    },
+    {
+      "name": "Tronje Krop",
+      "email": "tronje.krop@zalando.de"
+    }
   ]
 }
