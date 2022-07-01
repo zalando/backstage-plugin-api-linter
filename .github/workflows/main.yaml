@@ -1,0 +1,35 @@
+name: Publish package to NPM
+
+on: 
+   release:
+     types: [created]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      # Setup .npmrc file to publish to npm
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: install
+      - run: yarn install
+
+      - name: install react
+        run: yarn install:ci
+
+      - name: test
+      - run: yarn test -- --no-watch --silent --forceExit --detectOpenHandles --no-cache --coverage=false --runInBand
+
+      - name: running tsc
+        run: yarn tsc
+
+      - name: building
+        run: yarn build
+
+      - run: yarn publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
