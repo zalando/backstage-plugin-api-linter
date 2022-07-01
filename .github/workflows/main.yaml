@@ -1,35 +1,37 @@
-name: Publish package to NPM
+# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
+# For more information see: https://help.github.com/actions/language-and-framework-guides/publishing-nodejs-packages
 
-on: 
-   release:
-     types: [created]
+name: Node.js Package
+
+on:
+  release:
+    types: [created]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      # Setup .npmrc file to publish to npm
+       # Setup .npmrc file to publish to npm
       - uses: actions/setup-node@v3
         with:
-          node-version: '16.x'
-          registry-url: 'https://registry.npmjs.org'
-
-      - name: install
+          node-version: 16
       - run: yarn install
-
-      - name: install react
-        run: yarn install:ci
-
-      - name: test
+      - run: yarn install:ci
+      - run: yarn tsc
+      - run: yarn build
       - run: yarn test -- --no-watch --silent --forceExit --detectOpenHandles --no-cache --coverage=false --runInBand
 
-      - name: running tsc
-        run: yarn tsc
-
-      - name: building
-        run: yarn build
-
-      - run: yarn publish
+  publish-npm:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          registry-url: https://registry.npmjs.org/
+      - run: npm ci
+      - run: npm publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
