@@ -1,6 +1,6 @@
 {
   "name": "@zalando/backstage-plugin-api-linter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "API Linter is a quality assurance tool that checks the compliance of API's specifications to Zalando's API rules.",
   "main": "src/index.ts",
   "types": "src/index.ts",
