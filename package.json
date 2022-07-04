@@ -4,10 +4,17 @@
   "description": "API Linter is a quality assurance tool that checks the compliance of API's specifications to Zalando's API rules.",
   "main": "src/index.ts",
   "types": "src/index.ts",
+  "directories": {
+    "doc": "docs"
+  },
   "license": "MIT",
   "private": false,
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zalando/backstage-api-linter-plugin.git"
   },
   "keywords": [
     "zalando",
@@ -18,6 +25,7 @@
     "linter",
     "API"
   ],
+  "author": "zalando",
   "scripts": {
     "build": "backstage-cli plugin:build",
     "start": "backstage-cli plugin:serve",
@@ -78,6 +86,9 @@
     "Ewa <ewa.maslocha@zalando.de>",
     "Tronje Krop <tronje.krop@zalando.de>"
   ],
+  "bugs": {
+    "url": "https://github.com/zalando/backstage-api-linter-plugin/issues"
+  },
   "homepage": "https://github.com/zalando/backstage-api-linter-plugin#readme",
   "contributors": [
     {
