@@ -6,8 +6,6 @@ name: Node.js Package
 on:
   release:
     types: [created]
-  push:
-    branches: [ "main" ]
 
 jobs:
   publish-npm:
@@ -22,7 +20,7 @@ jobs:
       - run: yarn install:ci
       - run: yarn tsc
       - run: yarn build
-      - run: yarn test -- --no-watch --silent --forceExit --detectOpenHandles --no-cache --coverage=false --runInBand
+      - run: yarn test:ci
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
