@@ -12,7 +12,7 @@ _This plugin was created through the Backstage CLI_
 Add the plugin to your frontend app:
 
 ```
-cd package/app && yarn add @zalando/backstage-plugin-api-linter
+cd package/app && yarn add backstage-plugin-api-linter
 ```
 
 On your `app-config.yaml` configure the proxy endpoint of the plugin.
@@ -29,7 +29,7 @@ proxy:
 First export the plugin on `app/App.tsx` file:
 
 ~~~javascript
-export { APILinterPlugin } from '@zalando/backstage-plugin-api-linter';
+export { APILinterPlugin } from 'backstage-plugin-api-linter';
 ~~~
 
 Then use the component on your application!
