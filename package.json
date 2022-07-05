@@ -1,42 +1,10 @@
 {
-  "name": "@zalando/backstage-plugin-api-linter",
-  "version": "1.0.1",
+  "name": "backstage-plugin-api-linter",
+  "version": "1.0.0",
   "description": "API Linter is a quality assurance tool that checks the compliance of API's specifications to Zalando's API rules.",
   "main": "src/index.ts",
-  "types": "src/index.ts",
   "directories": {
     "doc": "docs"
-  },
-  "license": "MIT",
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/zalando/backstage-api-linter-plugin.git"
-  },
-  "keywords": [
-    "zalando",
-    "javascript",
-    "backstage",
-    "plugin",
-    "typescript",
-    "linter",
-    "API"
-  ],
-  "author": "zalando",
-  "scripts": {
-    "build": "backstage-cli plugin:build",
-    "start": "backstage-cli plugin:serve",
-    "lint": "backstage-cli lint",
-    "test": "backstage-cli test",
-    "tsc": "tsc",
-    "test:ci": "backstage-cli test -- --no-watch --silent --forceExit --detectOpenHandles --no-cache --coverage=false --runInBand",
-    "diff": "backstage-cli plugin:diff",
-    "prepack": "backstage-cli prepack",
-    "postpack": "backstage-cli postpack",
-    "clean": "backstage-cli clean",
-    "install:ci": "yarn add react@16.13.1"
   },
   "dependencies": {
     "@backstage/core-components": "^0.8.10",
@@ -53,12 +21,12 @@
     "swagger-ui-react": "^4.12.0"
   },
   "peerDependencies": {
+    "@backstage/core-components": "^0.8.10",
+    "@backstage/core-plugin-api": "^0.7.0",
+    "@backstage/theme": "^0.2.13",
     "@material-ui/core": "^4.12.2",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "4.0.0-alpha.57",
-    "@backstage/core-plugin-api": "^0.7.0",
-    "@backstage/core-components": "^0.8.10",
-    "@backstage/theme": "^0.2.13",
     "react": "^16.13.1 || ^17.0.0",
     "react-dom": "^16.13.1 || ^17.0.0"
   },
@@ -77,6 +45,35 @@
     "husky": "^8.0.1",
     "msw": "^0.35.0"
   },
+  "scripts": {
+    "build": "backstage-cli plugin:build",
+    "start": "backstage-cli plugin:serve",
+    "lint": "backstage-cli lint",
+    "test": "backstage-cli test",
+    "tsc": "tsc",
+    "test:ci": "backstage-cli test -- --no-watch --silent --forceExit --detectOpenHandles --no-cache --coverage=false --runInBand",
+    "diff": "backstage-cli plugin:diff",
+    "prepack": "backstage-cli prepack",
+    "postpack": "backstage-cli postpack",
+    "clean": "backstage-cli clean",
+    "install:ci": "yarn add react@16.13.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zalando/backstage-api-linter-plugin.git"
+  },
+  "keywords": [
+    "api-linter",
+    "linter",
+    "javascript",
+    "typescript",
+    "zalando",
+    "API",
+    "backstage",
+    "plugin"
+  ],
+  "author": "Natalya Peixoto natalya.peixoto@zalando.de",
+  "license": "MIT",
   "files": [
     "dist"
   ],
