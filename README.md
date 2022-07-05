@@ -1,3 +1,6 @@
+[![Node.js CI](https://github.com/zalando/backstage-api-linter-plugin/actions/workflows/node.js.yml/badge.svg?branch=main)](https://github.com/zalando/backstage-api-linter-plugin/actions/workflows/node.js.yml)
+
+
 # backstage-plugin-api-linter
 
 Welcome to the Backstage Plugin API Linter!

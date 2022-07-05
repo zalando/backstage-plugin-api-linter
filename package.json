@@ -3,8 +3,10 @@
   "version": "1.0.1",
   "description": "API Linter is a quality assurance tool that checks the compliance of API's specifications to Zalando's API rules.",
   "main": "src/index.ts",
-  "directories": {
-    "doc": "docs"
+  "publishConfig": {
+    "access": "public",
+    "main": "dist/index.esm.js",
+    "types": "dist/index.d.ts"
   },
   "dependencies": {
     "@backstage/core-components": "^0.8.10",
