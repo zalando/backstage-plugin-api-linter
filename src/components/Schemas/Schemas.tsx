@@ -110,7 +110,7 @@ export const Schemas: React.FC<SchemasProps> = ({
         </Box>
       </Box>
 
-      <S.FlexBox>
+      <S.Box>
         <S.EditorWrapper>
           <AceEditor
             wrapEnabled
@@ -149,7 +149,7 @@ export const Schemas: React.FC<SchemasProps> = ({
             event={event}
           />
         </S.ViolationsWrapper>
-      </S.FlexBox>
+      </S.Box>
     </Box>
   );
 };

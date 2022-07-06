@@ -1,5 +1,5 @@
 import {
-  Box,
+  Box as BoxUI,
   Link,
   Paper,
   Typography,
@@ -24,7 +24,7 @@ export const UrlLink = styled(Link)({
   color: "#DE7C02",
 });
 
-export const FlexBox = styled(Box)(({ theme }) => ({
+export const Box = styled(BoxUI)(({ theme }) => ({
   display: "grid",
   gridTemplateColumns: "1fr 1fr .5fr",
   gridTemplateRows: "auto",
@@ -47,7 +47,6 @@ export const FlexBox = styled(Box)(({ theme }) => ({
 }));
 
 export const EditorWrapper = styled(Paper)(({ theme }) => ({
-  display: "grid",
   flexDirection: "column",
   marginTop: 12,
   borderRadius: 2,
@@ -60,7 +59,6 @@ export const EditorWrapper = styled(Paper)(({ theme }) => ({
 }));
 
 export const SwaggerUIWrapper = styled(Paper)(({ theme }) => ({
-  display: "grid",
   backgroundColor: "#fff",
   color: "rgb(87, 90, 94)",
   gridArea: "swagger",
@@ -78,7 +76,6 @@ export const SwaggerUIWrapper = styled(Paper)(({ theme }) => ({
 }));
 
 export const ViolationsWrapper = styled(Paper)(({ theme }) => ({
-  display: "grid",
   backgroundColor: "#fff",
   justifyContent: "center",
   marginTop: 12,
