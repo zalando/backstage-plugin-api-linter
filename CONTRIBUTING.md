@@ -20,3 +20,4 @@ Follow these steps to contribute your work to backstage-plugin-api-linter:
 1. We will review your PR, give feedback, and merge when it is ready.
 
 Thanks for your contribution!
+
