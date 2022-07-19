@@ -7,9 +7,10 @@ Welcome to the Backstage Plugin API Linter!
 
 API Linter is a quality assurance tool. Its main purpose is to check the compliance of API's specifications to Zalando's API rules.
 
-The plugin is able to lint the API specification in OpenAPI format. The result of the linting is a set of Violations. A violation contains information about the violated rule, its severity, and path of the violation in the specification document.
+The plugin's UI is able to lint the API specification in OpenAPI format. The result of the linting is a set of Violations. A violation contains information about the violated rule, its severity, and path of the violation in the specification document.
 
-_This plugin was created through the Backstage CLI_
+This plugin is an UI using [Zally](https://github.com/zalando/zally) as a backend. 
+
 ## Getting started
 
 Add the plugin to your frontend app:
