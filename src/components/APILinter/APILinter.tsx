@@ -73,7 +73,6 @@ export const APILinter: React.FC<APILinterProps> = ({
       .getApiViolations(url)
       .catch((err) => {
         setError(err.message);
-        setSchemaInput("");
         setLoading(false);
       })
       .then((res) => {
