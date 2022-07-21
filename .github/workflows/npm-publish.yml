@@ -20,7 +20,6 @@ jobs:
       - run: yarn install:ci
       - run: yarn tsc
       - run: yarn build
-      - run: yarn test:ci
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
