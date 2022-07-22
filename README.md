@@ -24,7 +24,7 @@ On your `app-config.yaml` configure the proxy endpoint of the plugin.
 ```yaml
 proxy:
   "/api-linter":
-    target: https://infrastructure-api-linter.zalandoapis.com
+    target: <your-zally-instance-url>
     allowedHeaders: ["Authorization"]
 ```
 
