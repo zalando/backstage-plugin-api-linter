@@ -16,7 +16,7 @@ This plugin is an UI using [Zally](https://github.com/zalando/zally) as a backen
 Add the plugin to your frontend app:
 
 ```
-cd package/app && yarn add backstage-plugin-api-linter
+cd packages/app && yarn add backstage-plugin-api-linter
 ```
 
 On your `app-config.yaml` configure the proxy endpoint of the plugin.
@@ -38,7 +38,7 @@ export { APILinterPlugin } from 'backstage-plugin-api-linter';
 
 Then use the component on your application!
 
-With tabbed layout:
+With [tabbed layout](https://backstage.io/storybook/?path=/story/navigation-tabbedlayout--default):
 
 ```javascript
 <TabbedLayout>
