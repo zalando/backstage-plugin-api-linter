@@ -6475,7 +6475,7 @@ git-up@^4.0.0:
   integrity sha512-YUvVDg/vX3d0syBsk/CKUTib0srcQME0JyHkL5BaYdwLsiCslPWmDSi8PUMo9pXYjrryMcmsCoCgsTpSCJEQaA==
   dependencies:
     is-ssh "^1.3.0"
-    parse-url "^6.0.0"
+    parse-url "^5.0.0"
 
 git-url-parse@^11.6.0:
   version "11.6.0"
