@@ -33,6 +33,9 @@ export const Box = styled(BoxUI)(({ theme }) => ({
     'editor swagger violations'
   `,
   height: "58vh",
+  [theme.breakpoints.down("lg")]: {
+    height: "54vh",
+  },
   [theme.breakpoints.down("md")]: {
     height: "100vh",
     gridTemplateColumns: "1fr",
