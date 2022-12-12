@@ -45,7 +45,7 @@ describe("APILinter", () => {
   afterAll(()=>{
     Object.defineProperty(window, "sessionStorage", {writable: true, value: originalSessionStorage});
   })
-  
+
   it("should render rules", async () => {
     renderApp();
 
