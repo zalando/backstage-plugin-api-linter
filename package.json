@@ -64,7 +64,7 @@
     "prepack": "backstage-cli package prepack",
     "postpack": "backstage-cli package postpack",
     "clean": "backstage-cli package clean",
-    "install:ci": "yarn add react@16.13.1"
+    "install:ci": "yarn add react@18.2.0"
   },
   "repository": {
     "type": "git",
