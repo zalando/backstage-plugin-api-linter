@@ -6,7 +6,7 @@ name: Node.js Package
 on:
   release:
     types: [created]
-  pull_request:
+  push:
     branches: [ "main" ]
 
 jobs:
