@@ -1,5 +1,3 @@
-import React from "react";
-
 export const perfectApi = (
   <>
     <strong>Perfect</strong>! Your API is compliant with Zalando's Rest API
