@@ -1,3 +1,4 @@
+// @ts-ignore
 import React from "react";
 import { createDevApp } from "@backstage/dev-utils";
 import { APILinterPlugin } from "../src/plugin";
