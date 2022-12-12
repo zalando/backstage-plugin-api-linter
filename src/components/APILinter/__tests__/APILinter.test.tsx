@@ -20,12 +20,32 @@ async function renderApp() {
 }
 
 describe("APILinter", () => {
-  afterAll(() => {
+  let originalSessionStorage;
+
+  beforeAll(()=>{
+    originalSessionStorage = window.sessionStorage;
     // @ts-ignore
-    global.Storage.prototype.setItem.mockReset();
-    // @ts-ignore
-    global.Storage.prototype.getItem.mockReset();
+    delete window.sessionStorage;
+    Object.defineProperty(window, "sessionStorage", {
+      writable: true,
+      value: {
+        getItem: jest.fn().mockName("getItem"),
+        setItem: jest.fn().mockName("setItem")
+      }
+    });
   });
+
+  beforeEach(()=>{
+    // @ts-ignore
+    sessionStorage.getItem.mockClear();
+    // @ts-ignore
+    sessionStorage.setItem.mockClear();
+  });
+
+  afterAll(()=>{
+    Object.defineProperty(window, "sessionStorage", {writable: true, value: originalSessionStorage});
+  })
+  
   it("should render rules", async () => {
     renderApp();
 
