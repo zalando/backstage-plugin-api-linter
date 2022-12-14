@@ -4,7 +4,6 @@
   "exclude": ["node_modules", "dist-types"],
   "compilerOptions": {
     "outDir": "dist-types",
-    "jsx": "react-jsx",
     "rootDir": ".",
     "skipLibCheck": true,
     "typeRoots": ["**/typings", "node_modules/@types"],
