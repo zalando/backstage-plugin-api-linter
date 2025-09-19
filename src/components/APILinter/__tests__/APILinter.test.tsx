@@ -7,6 +7,7 @@ import { RenderResult } from "@testing-library/react";
 import { zallyApiRef } from "../../../api";
 import { mockZallyApi, mockZallyApiEmpty } from "./mocks";
 import schema from "./schemaMock.json";
+import "@testing-library/jest-dom";
 
 function renderApp() {
   return renderInTestApp(
