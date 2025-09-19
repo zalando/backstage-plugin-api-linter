@@ -1,20 +1,20 @@
 import {
-  styled,
   Card as CardUI,
   Chip as ChipUI,
-  Typography,
+  styled,
   type Theme,
-} from "@material-ui/core";
+  Typography,
+} from '@material-ui/core';
 
 export const Card = styled(CardUI)({
-  display: "flex",
-  flexDirection: "column",
+  display: 'flex',
+  flexDirection: 'column',
   marginTop: 16,
-  backgroundColor: "rgb(242, 242, 242)",
+  backgroundColor: 'rgb(242, 242, 242)',
 });
 
 export const CardText = styled(Typography)({
-  color: "#101419",
+  color: '#101419',
 });
 
 type ChipColorStyles = {
@@ -25,7 +25,7 @@ export const Chip = styled(ChipUI)<Theme, { label: string }>(({
   theme,
   label,
 }) => {
-  const type = label.split(":")[0];
+  const type = label.split(':')[0];
 
   const colorForViolation: ChipColorStyles = {
     must: theme.palette.error.main,
@@ -35,9 +35,9 @@ export const Chip = styled(ChipUI)<Theme, { label: string }>(({
 
   return {
     border: `1px solid ${colorForViolation[type]}`,
-    color: "#212121",
-    backgroundColor: "#fff",
-    textTransform: "capitalize",
-    fontSize: "12px",
+    color: '#212121',
+    backgroundColor: '#fff',
+    textTransform: 'capitalize',
+    fontSize: '12px',
   };
 });

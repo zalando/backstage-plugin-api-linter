@@ -1,6 +1,6 @@
-import { styled, type Theme } from "@material-ui/core";
-import ErrorIcon from "@material-ui/icons/Error";
-import CheckCircleRoundedIcon from "@material-ui/icons/CheckCircleRounded";
+import { styled, type Theme } from '@material-ui/core';
+import ErrorIcon from '@material-ui/icons/Error';
+import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
 
 type ColorStyles = {
   [x: string]: string;
@@ -28,10 +28,10 @@ export const PerfectApiBadge = styled(CheckCircleRoundedIcon)(({ theme }) => ({
   marginRight: 10,
 }));
 
-export const BadgeWrapper = styled("div")({
+export const BadgeWrapper = styled('div')({
   paddingBottom: 12,
-  display: "flex",
-  justifyContent: "flex-start",
-  alignItems: "center",
-  color: "#101419",
+  display: 'flex',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+  color: '#101419',
 });
