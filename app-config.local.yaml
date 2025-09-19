@@ -1,0 +1,5 @@
+app:
+  title: 'Backstage'
+
+backend:
+  baseUrl: 'http://localhost:8080'
