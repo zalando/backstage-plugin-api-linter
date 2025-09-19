@@ -1,12 +1,19 @@
 {
   "swagger": "2.0",
+  "paths": {},
   "info": {
     "version": "1.0.0",
     "title": "Swagger Petstore"
   },
   "host": "petstore.swagger.io",
   "basePath": "/v1",
-  "schemes": ["http"],
-  "consumes": ["application/json"],
-  "produces": ["application/json"]
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ]
 }

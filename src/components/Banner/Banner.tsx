@@ -1,10 +1,10 @@
-import React, { ReactNode } from "react";
+import type { FC, ReactNode } from "react";
 import Alert from "@material-ui/lab/Alert";
 import Collapse from "@material-ui/core/Collapse";
 import CloseIcon from "@material-ui/icons/Close";
 import { useLocalStorage } from "react-use";
 import * as S from "./styles";
-import { IEventTracking } from "../../event-types";
+import type { IEventTracking } from "../../event-types";
 
 type BannerProps = {
   sendEvent: ((args: IEventTracking) => void) | undefined;
@@ -14,7 +14,7 @@ type BannerProps = {
   children: ReactNode;
 };
 
-export const Banner: React.FC<BannerProps> = ({
+export const Banner: FC<BannerProps> = ({
   variant,
   severity,
   id,

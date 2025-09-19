@@ -1,6 +1,6 @@
-import React from "react";
+import type { FC } from "react";
 import { Box, CardContent, Typography } from "@material-ui/core";
-import { ViolationsResponse } from "../../../../api/types";
+import type { ViolationsResponse } from "../../../../api/types";
 import LinkIcon from "@material-ui/icons/Link";
 import * as S from "./styles";
 import { Button } from "./styles";
@@ -9,7 +9,7 @@ import { APIBadge } from "../APIBadge";
 import { aggregateByViolation } from "../../../../helpers";
 import { ViolationsDetails } from "./ViolationsDetails";
 import { Chip } from "../../../Rules/components/DetailsCard/style";
-import { ICommonEventInfo, IEventTracking } from "../../../../event-types";
+import type { ICommonEventInfo, IEventTracking } from "../../../../event-types";
 
 type ViolationsCardProps = ViolationsResponse & {
   onExternalIdChange: (v: string) => void;
@@ -17,7 +17,7 @@ type ViolationsCardProps = ViolationsResponse & {
   event?: ICommonEventInfo;
 };
 
-export const ViolationsCard: React.FC<ViolationsCardProps> = ({
+export const ViolationsCard: FC<ViolationsCardProps> = ({
   external_id,
   violations,
   violations_count,

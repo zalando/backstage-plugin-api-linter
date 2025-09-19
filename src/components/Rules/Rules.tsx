@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState, type FC } from "react";
 import { useApi } from "@backstage/core-plugin-api";
 import { zallyApiRef } from "../../api";
 import { Box, Button, Typography } from "@material-ui/core";
 import { Loading } from "../Loading";
 import { DetailsCard } from "./components/DetailsCard";
 import * as S from "./styles";
-import { Rule } from "../../api/types";
-import { ICommonEventInfo, IEventTracking } from "../../event-types";
+import type { Rule } from "../../api/types";
+import type { ICommonEventInfo, IEventTracking } from "../../event-types";
 
 type RulesProps = {
   openRules: boolean;
@@ -15,7 +15,7 @@ type RulesProps = {
   event?: ICommonEventInfo;
 };
 
-export const Rules: React.FC<RulesProps> = ({
+export const Rules: FC<RulesProps> = ({
   openRules,
   toggleDrawer,
   sendEvent,

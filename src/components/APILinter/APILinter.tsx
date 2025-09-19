@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState, type FC } from "react";
 import { Schemas } from "../Schemas";
 import { useApi } from "@backstage/core-plugin-api";
 import { zallyApiRef } from "../../api";
@@ -8,12 +8,12 @@ import { forceChangeAndClear, getIDFromURL } from "../../helpers";
 import { SCHEMA_STORAGE_KEY, URL_STORAGE_KEY } from "../../constants";
 import { useLocalStorage } from "react-use";
 import { Header } from "../Header";
-import {
+import type {
   ViolationsByString,
   ViolationsByUrl,
   ViolationsResponse,
 } from "../../api/types";
-import { ICommonEventInfo, IEventTracking } from "../../event-types";
+import type { ICommonEventInfo, IEventTracking } from "../../event-types";
 
 type APILinterProps = {
   sendEvent?: (args: IEventTracking) => void;
@@ -21,7 +21,7 @@ type APILinterProps = {
   eventInfo?: ICommonEventInfo;
 };
 
-export const APILinter: React.FC<APILinterProps> = ({
+export const APILinter: FC<APILinterProps> = ({
   sendEvent = undefined,
   sendPageView = undefined,
   eventInfo = undefined,

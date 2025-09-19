@@ -1,5 +1,5 @@
 import { Button, Collapse } from "@material-ui/core";
-import React, { useState } from "react";
+import { useState, type FC } from "react";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import ArrowDropUp from "@material-ui/icons/ArrowDropUp";
 import * as S from "./styles";
@@ -10,7 +10,7 @@ type ViolationsDetailsProps = {
   description: string | string[];
 };
 
-export const ViolationsDetails: React.VFC<ViolationsDetailsProps> = ({
+export const ViolationsDetails: FC<ViolationsDetailsProps> = ({
   paths,
   pointer,
   description,

@@ -1,8 +1,8 @@
+import type { FC } from "react";
 import { CardContent, Typography } from "@material-ui/core";
-import React from "react";
 import { Link } from "@backstage/core-components";
 import * as S from "./style";
-import { ICommonEventInfo, IEventTracking } from "../../../../event-types";
+import type { ICommonEventInfo, IEventTracking } from "../../../../event-types";
 
 type DetailsCardProps = {
   key: string;
@@ -16,7 +16,7 @@ type DetailsCardProps = {
   isViolation?: boolean;
 };
 
-export const DetailsCard: React.VFC<DetailsCardProps> = ({
+export const DetailsCard: FC<DetailsCardProps> = ({
   key,
   title,
   type,

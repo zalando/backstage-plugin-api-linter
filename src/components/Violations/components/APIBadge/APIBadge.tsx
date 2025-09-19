@@ -1,6 +1,6 @@
 import { Typography } from "@material-ui/core";
-import React from "react";
-import { ViolationCount } from "../../../../api/types";
+import type { FC } from "react";
+import type { ViolationCount } from "../../../../api/types";
 import {
   perfectApi,
   mayViolations,
@@ -8,7 +8,7 @@ import {
   mustViolations,
 } from "./texts";
 import * as S from "./styles";
-import { ICommonEventInfo, IEventTracking } from "../../../../event-types";
+import type { ICommonEventInfo, IEventTracking } from "../../../../event-types";
 
 type APIBadgeProps = {
   violations: ViolationCount;
@@ -16,7 +16,7 @@ type APIBadgeProps = {
   event?: ICommonEventInfo;
 };
 
-export const APIBadge: React.VFC<APIBadgeProps> = ({
+export const APIBadge: FC<APIBadgeProps> = ({
   violations,
   sendEvent,
   event,

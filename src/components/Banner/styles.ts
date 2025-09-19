@@ -1,8 +1,7 @@
-import { BackstageTheme } from '@backstage/theme';
 import { styled } from '@material-ui/core';
 
 export const BannerWrapper = styled('div')(
-  ({ theme }: { theme: BackstageTheme }) => ({
+  ({ theme }) => ({
     width: '100%',
     marginBottom: theme.spacing(2),
     '& > * + *': {

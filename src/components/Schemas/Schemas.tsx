@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { type FC, useEffect } from "react";
 import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/mode-java";
 import "ace-builds/src-noconflict/theme-github";
@@ -13,12 +13,11 @@ import "brace/snippets/json";
 import "swagger-ui-react/swagger-ui.css";
 import { Box, Typography } from "@material-ui/core";
 import { Violations } from "../Violations";
-import { ViolationsResponse } from "../../api/types";
+import type { ViolationsResponse } from "../../api/types";
 import LinkIcon from "@material-ui/icons/Link";
 import SwaggerUI from "swagger-ui-react";
-
 import * as S from "./styles";
-import { ICommonEventInfo, IEventTracking } from "../../event-types";
+import type { ICommonEventInfo, IEventTracking } from "../../event-types";
 
 type SchemasProps = {
   onInputChange: (value: string) => void;
@@ -35,7 +34,7 @@ type SchemasProps = {
   handleClearAll: VoidFunction;
 };
 
-export const Schemas: React.FC<SchemasProps> = ({
+export const Schemas: FC<SchemasProps> = ({
   onInputChange,
   onSubmit,
   schemaValue,
@@ -136,6 +135,7 @@ export const Schemas: React.FC<SchemasProps> = ({
         </S.EditorWrapper>
 
         <S.SwaggerUIWrapper>
+          {/* @ts-ignore */}
           <SwaggerUI spec={schemaValue} />
         </S.SwaggerUIWrapper>
 

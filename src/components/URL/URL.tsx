@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { ViolationsResponse, ViolationsByUrl } from "../../api/types";
-import { ICommonEventInfo, IEventTracking } from "../../event-types";
+import { useEffect, useState, type FC } from "react";
+import type { ViolationsResponse, ViolationsByUrl } from "../../api/types";
+import type { ICommonEventInfo, IEventTracking } from "../../event-types";
 import { isValidHttpUrl } from "../../helpers";
 import { URLValidator } from "./components/URLValidator";
 
@@ -16,7 +16,7 @@ type URLProps = {
   urlStorage?: string;
 };
 
-export const URLComponent: React.FC<URLProps> = ({
+export const URLComponent: FC<URLProps> = ({
   open,
   onOpen,
   fetchData,

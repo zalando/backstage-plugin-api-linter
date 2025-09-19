@@ -1,6 +1,6 @@
-import React from "react";
-import { ViolationsResponse } from "../../api/types";
-import { ICommonEventInfo, IEventTracking } from "../../event-types";
+import type { FC } from "react";
+import type { ViolationsResponse } from "../../api/types";
+import type { ICommonEventInfo, IEventTracking } from "../../event-types";
 import { Loading } from "../Loading";
 import { ViolationsCard } from "./components";
 import * as S from "./styles";
@@ -14,7 +14,7 @@ type ViolationsProps = {
   event?: ICommonEventInfo;
 };
 
-export const Violations: React.VFC<ViolationsProps> = ({
+export const Violations: FC<ViolationsProps> = ({
   response,
   loading,
   error,

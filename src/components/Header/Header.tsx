@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState, type FC } from "react";
 import { Box } from "@material-ui/core";
 import * as S from "./styles";
 
@@ -11,7 +11,7 @@ type HeaderProps = {
   eventInfo: ICommonEventInfo;
 };
 
-export const Header: React.FC<HeaderProps> = ({
+export const Header: FC<HeaderProps> = ({
   sendEvent,
   toggleDrawer,
   eventInfo,

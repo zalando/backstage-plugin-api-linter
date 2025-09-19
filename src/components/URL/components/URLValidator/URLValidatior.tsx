@@ -6,12 +6,12 @@ import {
   DialogContentText,
   TextField,
 } from "@material-ui/core";
-import React from "react";
-import { ICommonEventInfo, IEventTracking } from "../../../../event-types";
+import type { FC, ChangeEvent } from "react";
+import type { ICommonEventInfo, IEventTracking } from "../../../../event-types";
 
 type URLValidatorProps = {
   onSubmit: () => void;
-  onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onInputChange: (e: ChangeEvent<HTMLInputElement>) => void;
   error: string;
   open: boolean;
   sendEvent?: (args: IEventTracking) => void;
@@ -20,7 +20,7 @@ type URLValidatorProps = {
   handleClose: () => void;
 };
 
-export const URLValidator: React.VFC<URLValidatorProps> = ({
+export const URLValidator: FC<URLValidatorProps> = ({
   onSubmit,
   onInputChange,
   inputValue,
