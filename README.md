@@ -1,15 +1,17 @@
 [![Node.js CI](https://github.com/zalando/backstage-api-linter-plugin/actions/workflows/node.js.yml/badge.svg?branch=main)](https://github.com/zalando/backstage-api-linter-plugin/actions/workflows/node.js.yml)
 
-
 # backstage-plugin-api-linter
 
 Welcome to the Backstage Plugin API Linter!
 
-API Linter is a quality assurance tool. Its main purpose is to check the compliance of API's specifications to Zalando's API rules.
+API Linter is a quality assurance tool. Its main purpose is to check the compliance of API's specifications to Zalando's
+API rules.
 
-The plugin's UI is able to lint the API specification in OpenAPI format. The result of the linting is a set of Violations. A violation contains information about the violated rule, its severity, and path of the violation in the specification document.
+The plugin's UI is able to lint the API specification in OpenAPI format. The result of the linting is a set of
+Violations. A violation contains information about the violated rule, its severity, and path of the violation in the
+specification document.
 
-This plugin is an UI using [Zally](https://github.com/zalando/zally) as a backend. 
+This plugin is an UI using [Zally](https://github.com/zalando/zally) as a backend.
 
 ## Getting started
 
@@ -23,30 +25,30 @@ On your `app-config.yaml` configure the proxy endpoint of the plugin.
 
 ```yaml
 proxy:
-  "/api-linter":
+  '/api-linter':
     target: <your-zally-instance-url>
-    allowedHeaders: ["Authorization"]
+    allowedHeaders: ['Authorization']
 ```
 
 #### Using ApiLinter:
 
 First export the plugin on `app/App.tsx` file:
 
-~~~javascript
+```js
 export { APILinterPlugin } from 'backstage-plugin-api-linter';
-~~~
+```
 
 Then use the component on your application!
 
 With [tabbed layout](https://backstage.io/storybook/?path=/story/navigation-tabbedlayout--default):
 
-```javascript
+```jsx
 <TabbedLayout>
   <TabbedLayout.Route path="/" title="another title">
-    <AnotherExampleComponent />
+    <AnotherExampleComponent/>
   </TabbedLayout.Route>
   <TabbedLayout.Route path="/linter" title="LINTER" data-id="api-linter">
-    <APILinter />
+    <APILinter/>
   </TabbedLayout.Route>
 </TabbedLayout>
 ```
@@ -55,7 +57,7 @@ Content
 
 ```javascript
 <Content>
-  <APILinter />
+  <APILinter/>
 </Content>
 ```
 
@@ -66,13 +68,13 @@ Content
 We are currently using Google Analytics for tracking the user behavior.
 To track the plugin you can pass your google Analytics functions as props to the `APILinter` component.
 
-```javascript
+```jsx
 <APILinter
   sendEvent={PluginTracking.sendEvent}
   sendPageView={PluginTracking.sendPageView}
   eventInfo={{
-    plugin: "api-linter",
-    eventCategory: "API linter page",
+    plugin: 'api-linter',
+    eventCategory: 'API linter page',
   }}
 />
 ```
@@ -92,8 +94,8 @@ function sendEvent(args: IEventTracking) {
 }
 ```
 
-```javascript
-type IEventTracking {
+```ts
+interface IEventTracking {
   plugin: string;
   eventLabel: string;
   eventAction: string;
@@ -105,18 +107,18 @@ type IEventTracking {
 
 ```javascript
 function sendPageView() {
-  GoogleAnalytics.set({ page: window.location.pathname });
+  GoogleAnalytics.set({page: window.location.pathname});
   GoogleAnalytics.pageview(window.location.pathname + window.location.search);
 }
 ```
 
 - eventInfo is:
 
-```javascript
-type ICommonEventInfo {
+```ts
+interface ICommonEventInfo {
   plugin: string;
   eventCategory: string;
-};
+}
 ```
 
 eventInfo will be the same for all events

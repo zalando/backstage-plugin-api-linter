@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { Schemas } from "../Schemas";
-import { useApi } from "@backstage/core-plugin-api";
-import { zallyApiRef } from "../../api";
-import { URLComponent } from "../URL";
-import { Rules } from "../Rules";
-import { forceChangeAndClear, getIDFromURL } from "../../helpers";
-import { SCHEMA_STORAGE_KEY, URL_STORAGE_KEY } from "../../constants";
-import { useLocalStorage } from "react-use";
-import { Header } from "../Header";
+import React, { useEffect, useState } from 'react';
+import { Schemas } from '../Schemas';
+import { useApi } from '@backstage/core-plugin-api';
+import { zallyApiRef } from '../../api';
+import { URLComponent } from '../URL';
+import { Rules } from '../Rules';
+import { forceChangeAndClear, getIDFromURL } from '../../helpers';
+import { SCHEMA_STORAGE_KEY, URL_STORAGE_KEY } from '../../constants';
+import { useLocalStorage } from 'react-use';
+import { Header } from '../Header';
 import {
   ViolationsByString,
   ViolationsByUrl,
   ViolationsResponse,
-} from "../../api/types";
-import { ICommonEventInfo, IEventTracking } from "../../event-types";
+} from '../../api/types';
+import { ICommonEventInfo, IEventTracking } from '../../event-types';
 
 type APILinterProps = {
   sendEvent?: (args: IEventTracking) => void;
@@ -27,22 +27,22 @@ export const APILinter: React.FC<APILinterProps> = ({
   eventInfo = undefined,
 }) => {
   const [externalId, setExternalId] = useState(getIDFromURL(location.pathname));
-  const [schemaInput, setSchemaInput] = useState("");
+  const [schemaInput, setSchemaInput] = useState('');
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const [response, setResponse] = useState<ViolationsResponse>();
   const [openURL, setOpenURL] = useState(false);
   const [openRules, setOpenRules] = useState(false);
   const zally = useApi(zallyApiRef);
   const [schemaStorage, setSchemaStorage] = useLocalStorage(
     SCHEMA_STORAGE_KEY,
-    ""
+    '',
   );
-  const [urlStorage, setUrlStorage] = useLocalStorage(URL_STORAGE_KEY, "");
+  const [urlStorage, setUrlStorage] = useLocalStorage(URL_STORAGE_KEY, '');
 
   const event: ICommonEventInfo = {
-    plugin: eventInfo?.plugin || "api-linter",
-    eventCategory: eventInfo?.eventCategory || "API Linter plugin",
+    plugin: eventInfo?.plugin || 'api-linter',
+    eventCategory: eventInfo?.eventCategory || 'API Linter plugin',
   };
 
   const openUrlDialog = () => {
@@ -50,7 +50,7 @@ export const APILinter: React.FC<APILinterProps> = ({
   };
 
   const handleInputChange = (value: string): void => {
-    setError("");
+    setError('');
     setSchemaInput(value);
     setSchemaStorage(value);
   };
@@ -71,29 +71,29 @@ export const APILinter: React.FC<APILinterProps> = ({
 
     zally
       .getApiViolations(url)
-      .catch((err) => {
+      .catch(err => {
         setError(err.message);
         setLoading(false);
       })
-      .then((res) => {
+      .then(res => {
         setResponse(res as ViolationsResponse);
       })
       .finally(() => setLoading(false));
   };
 
   const toggleDrawer = () => {
-    setOpenRules((prev) => !prev);
+    setOpenRules(prev => !prev);
   };
 
   const handleSubmitSchema = () => {
-    setError("");
+    setError('');
     setResponse(undefined);
     if (!schemaInput) return;
 
     sendEvent?.({
       ...event,
-      eventLabel: "submit schema",
-      eventAction: "validates API by schema",
+      eventLabel: 'submit schema',
+      eventAction: 'validates API by schema',
     });
 
     fetchData({
@@ -105,7 +105,7 @@ export const APILinter: React.FC<APILinterProps> = ({
     if (externalId) {
       zally
         .getSchemaAndViolations(externalId)
-        .then((data) => {
+        .then(data => {
           setResponse(data);
           setSchemaInput(handleJsonParsing(data.api_definition));
           setSchemaStorage(data.api_definition);
@@ -135,9 +135,9 @@ export const APILinter: React.FC<APILinterProps> = ({
 
   const clearAll = () => {
     setResponse(undefined);
-    setSchemaStorage("");
+    setSchemaStorage('');
     forceChangeAndClear(setSchemaInput, 0);
-    setUrlStorage("");
+    setUrlStorage('');
   };
 
   return (

@@ -1,17 +1,14 @@
-import {
-  createApiRef,
-  DiscoveryApi,
-} from "@backstage/core-plugin-api";
+import { createApiRef, DiscoveryApi } from '@backstage/core-plugin-api';
 import {
   Rule,
   ViolationsByString,
   ViolationsByUrl,
   ViolationsResponse,
   ZallyApiType,
-} from "./types";
+} from './types';
 
 export const zallyApiRef = createApiRef<ZallyApiType>({
-  id: "plugin.api-linter",
+  id: 'plugin.api-linter',
 });
 
 interface Apis {
@@ -26,13 +23,13 @@ export class ZallyApi implements ZallyApiType {
   }
 
   async getRules(): Promise<Rule[]> {
-    const serviceUrl = await this.getServiceUrl("supported-rules");
+    const serviceUrl = await this.getServiceUrl('supported-rules');
 
     const response = await fetch(serviceUrl, {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
-      credentials: "include",
+      credentials: 'include',
     });
 
     const data = await response.json();
@@ -40,16 +37,16 @@ export class ZallyApi implements ZallyApiType {
   }
 
   async getApiViolations(
-    request: ViolationsByUrl | ViolationsByString
+    request: ViolationsByUrl | ViolationsByString,
   ): Promise<ViolationsResponse> {
-    const serviceUrl = await this.getServiceUrl("api-violations");
+    const serviceUrl = await this.getServiceUrl('api-violations');
 
     const response = await fetch(serviceUrl, {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
-      credentials: "include",
-      method: "POST",
+      credentials: 'include',
+      method: 'POST',
       body: JSON.stringify(request),
     });
 
@@ -61,20 +58,20 @@ export class ZallyApi implements ZallyApiType {
   }
 
   async getSchemaAndViolations(id: string) {
-    const serviceUrl = await this.getServiceUrl("api-violations");
+    const serviceUrl = await this.getServiceUrl('api-violations');
 
     const response = await fetch(`${serviceUrl}/${id}`, {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
-      credentials: "include",
+      credentials: 'include',
     });
 
     return response.json();
   }
 
   private async getServiceUrl(path: string) {
-    const url = await this.discoveryApi.getBaseUrl("proxy");
+    const url = await this.discoveryApi.getBaseUrl('proxy');
 
     const serviceUrl = `${url}/api-linter/${path}`;
     return serviceUrl;

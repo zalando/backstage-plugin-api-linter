@@ -1,13 +1,13 @@
-import React from "react";
-import { APILinter } from "../APILinter";
-import { ThemeProvider } from "@material-ui/core";
-import { lightTheme } from "@backstage/theme";
-import { renderInTestApp, TestApiProvider } from "@backstage/test-utils";
-import userEvent from "@testing-library/user-event";
-import { act, screen } from "@testing-library/react";
-import { zallyApiRef } from "../../../api";
-import { mockZallyApi, mockZallyApiEmpty } from "./mocks";
-import schema from "./schemaMock.json";
+import React from 'react';
+import { APILinter } from '../APILinter';
+import { ThemeProvider } from '@material-ui/core';
+import { lightTheme } from '@backstage/theme';
+import { renderInTestApp, TestApiProvider } from '@backstage/test-utils';
+import userEvent from '@testing-library/user-event';
+import { act, screen } from '@testing-library/react';
+import { zallyApiRef } from '../../../api';
+import { mockZallyApi, mockZallyApiEmpty } from './mocks';
+import schema from './schemaMock.json';
 
 async function renderApp() {
   await renderInTestApp(
@@ -15,63 +15,66 @@ async function renderApp() {
       <ThemeProvider theme={lightTheme}>
         <APILinter />
       </ThemeProvider>
-    </TestApiProvider>
+    </TestApiProvider>,
   );
 }
 
-describe("APILinter", () => {
-  let originalSessionStorage;
+describe('APILinter', () => {
+  let originalSessionStorage: Storage;
 
-  beforeAll(()=>{
+  beforeAll(() => {
     originalSessionStorage = window.sessionStorage;
     // @ts-ignore
     delete window.sessionStorage;
-    Object.defineProperty(window, "sessionStorage", {
+    Object.defineProperty(window, 'sessionStorage', {
       writable: true,
       value: {
-        getItem: jest.fn().mockName("getItem"),
-        setItem: jest.fn().mockName("setItem")
-      }
+        getItem: jest.fn().mockName('getItem'),
+        setItem: jest.fn().mockName('setItem'),
+      },
     });
   });
 
-  beforeEach(()=>{
+  beforeEach(() => {
     // @ts-ignore
     sessionStorage.getItem.mockClear();
     // @ts-ignore
     sessionStorage.setItem.mockClear();
   });
 
-  afterAll(()=>{
-    Object.defineProperty(window, "sessionStorage", {writable: true, value: originalSessionStorage});
+  afterAll(() => {
+    Object.defineProperty(window, 'sessionStorage', {
+      writable: true,
+      value: originalSessionStorage,
+    });
   });
-  it("should render rules", async () => {
+  it('should render rules', async () => {
     renderApp();
 
     act(() => {
       userEvent.click(screen.getByText(/view the rules/i));
     });
 
-    const ruleCards = await screen.findAllByTestId("rule");
+    const ruleCards = await screen.findAllByTestId('rule');
     expect(ruleCards.length).toBeGreaterThan(0);
   });
 
-  it("should render URL dialog and display violation", async () => {
+  it('should render URL dialog and display violation', async () => {
     renderApp();
 
     userEvent.click(screen.getByText(/import url/i));
 
     const urlInput = screen.getByText(/Enter the url to import from/i);
-    userEvent.type(urlInput, "https://www.rawapi.com.br/api.json");
+    userEvent.type(urlInput, 'https://www.rawapi.com.br/api.json');
 
     userEvent.click(screen.getByTestId(/url-validate/i));
 
     const violations = await screen.findAllByTestId(/violation/i);
     expect(violations.length).toBe(1);
-    expect(await screen.findByTestId("must")).toBeInTheDocument();
+    expect(await screen.findByTestId('must')).toBeInTheDocument();
   });
 
-  it("should render Schema and display violations", async () => {
+  it('should render Schema and display violations', async () => {
     renderApp();
 
     const schemaInput = screen.getByText(/Paste a swagger schema here/i);
@@ -88,50 +91,50 @@ describe("APILinter", () => {
   });
 });
 
-describe("APILinter - No violations / Error", () => {
+describe('APILinter - No violations / Error', () => {
   beforeEach(async () => {
     await renderInTestApp(
       <TestApiProvider apis={[[zallyApiRef, mockZallyApiEmpty]]}>
         <ThemeProvider theme={lightTheme}>
           <APILinter />
         </ThemeProvider>
-      </TestApiProvider>
+      </TestApiProvider>,
     );
   });
 
-  it("should display perfect badge when no violations are found", async () => {
+  it('should display perfect badge when no violations are found', async () => {
     act(() => {
       userEvent.click(screen.getByText(/import url/i));
     });
 
     const urlInput = screen.getByText(/Enter the url to import from/i);
-    userEvent.type(urlInput, "https://www.perfectapi.com.br/api.json");
+    userEvent.type(urlInput, 'https://www.perfectapi.com.br/api.json');
 
     await userEvent.click(screen.getByTestId(/url-validate/i));
 
     expect(await screen.findByTestId(/perfect/i)).toBeInTheDocument();
   });
 
-  it("should not submit when user types invalid url", async () => {
+  it('should not submit when user types invalid url', async () => {
     userEvent.click(screen.getByText(/import url/i));
 
     const urlInput = screen.getByText(/Enter the url to import from/i);
-    userEvent.type(urlInput, "invalid-url");
+    userEvent.type(urlInput, 'invalid-url');
 
     userEvent.click(screen.getByTestId(/url-validate/i));
 
     expect(
-      await screen.getByText(/enter the URL to import from/i)
+      await screen.getByText(/enter the URL to import from/i),
     ).toBeInTheDocument();
   });
 
-  it("should render Schema and display correct badge when no violations are found", async () => {
+  it('should render Schema and display correct badge when no violations are found', async () => {
     const schemaInput = screen.getByText(/Paste a swagger schema here/i);
     act(() => {
       userEvent.type(schemaInput, JSON.stringify(schema));
     });
     await userEvent.click(screen.getByText(/Validate/i));
 
-    expect(await screen.findByTestId("perfect")).toBeInTheDocument();
+    expect(await screen.findByTestId('perfect')).toBeInTheDocument();
   });
 });

@@ -1,24 +1,24 @@
-import React, { useEffect } from "react";
-import AceEditor from "react-ace";
-import "ace-builds/src-noconflict/mode-java";
-import "ace-builds/src-noconflict/theme-github";
-import "brace";
-import "brace/ext/language_tools";
-import "brace/ext/searchbox";
-import "brace/theme/chrome";
-import "brace/mode/yaml";
-import "brace/mode/json";
-import "brace/snippets/yaml";
-import "brace/snippets/json";
-import "swagger-ui-react/swagger-ui.css";
-import { Box, Typography } from "@material-ui/core";
-import { Violations } from "../Violations";
-import { ViolationsResponse } from "../../api/types";
-import LinkIcon from "@material-ui/icons/Link";
-import SwaggerUI from "swagger-ui-react";
+import React, { useEffect } from 'react';
+import AceEditor from 'react-ace';
+import 'ace-builds/src-noconflict/mode-java';
+import 'ace-builds/src-noconflict/theme-github';
+import 'brace';
+import 'brace/ext/language_tools';
+import 'brace/ext/searchbox';
+import 'brace/theme/chrome';
+import 'brace/mode/yaml';
+import 'brace/mode/json';
+import 'brace/snippets/yaml';
+import 'brace/snippets/json';
+import 'swagger-ui-react/swagger-ui.css';
+import { Box, Typography } from '@material-ui/core';
+import { Violations } from '../Violations';
+import { ViolationsResponse } from '../../api/types';
+import LinkIcon from '@material-ui/icons/Link';
+import SwaggerUI from 'swagger-ui-react';
 
-import * as S from "./styles";
-import { ICommonEventInfo, IEventTracking } from "../../event-types";
+import * as S from './styles';
+import { ICommonEventInfo, IEventTracking } from '../../event-types';
 
 type SchemasProps = {
   onInputChange: (value: string) => void;
@@ -53,17 +53,17 @@ export const Schemas: React.FC<SchemasProps> = ({
     openUrlDialog();
     sendEvent?.({
       ...(event as ICommonEventInfo),
-      eventLabel: "onClick to import URL link",
-      eventAction: "Clicks on import URL link",
+      eventLabel: 'onClick to import URL link',
+      eventAction: 'Clicks on import URL link',
     });
   };
 
   let mode;
   try {
     JSON.parse(schemaValue as string);
-    mode = "json";
+    mode = 'json';
   } catch (e) {
-    mode = "yaml";
+    mode = 'yaml';
   }
 
   useEffect(() => {
@@ -117,8 +117,8 @@ export const Schemas: React.FC<SchemasProps> = ({
             onFocus={() =>
               sendEvent?.({
                 ...(event as ICommonEventInfo),
-                eventLabel: "onFocus on Schema Editor input",
-                eventAction: "focus on Schema Editor input",
+                eventLabel: 'onFocus on Schema Editor input',
+                eventAction: 'focus on Schema Editor input',
               })
             }
             enableBasicAutocompletion

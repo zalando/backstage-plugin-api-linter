@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { Box } from "@material-ui/core";
-import * as S from "./styles";
+import React, { useEffect, useState } from 'react';
+import { Box } from '@material-ui/core';
+import * as S from './styles';
 
-import { Banner } from "../Banner";
-import { ICommonEventInfo, IEventTracking } from "../../event-types";
+import { Banner } from '../Banner';
+import { ICommonEventInfo, IEventTracking } from '../../event-types';
 
 type HeaderProps = {
   sendEvent: ((args: IEventTracking) => void) | undefined;
@@ -17,7 +17,7 @@ export const Header: React.FC<HeaderProps> = ({
   eventInfo,
 }) => {
   const [showBanner, setShowBanner] = useState(false);
-  const isRedirected = !!location.pathname.split("/").includes("redirected");
+  const isRedirected = !!location.pathname.split('/').includes('redirected');
 
   useEffect(() => {
     if (isRedirected) {
@@ -25,7 +25,7 @@ export const Header: React.FC<HeaderProps> = ({
 
       sendEvent?.({
         ...eventInfo,
-        eventLabel: "redirect to api-linter",
+        eventLabel: 'redirect to api-linter',
         eventAction: "user redirected from zally-ui to sunrise's api-linter",
       });
     }
@@ -67,8 +67,8 @@ export const Header: React.FC<HeaderProps> = ({
             onClick={() =>
               sendEvent?.({
                 ...eventInfo,
-                eventLabel: "onClick to view rules",
-                eventAction: "clicks on view rules link",
+                eventLabel: 'onClick to view rules',
+                eventAction: 'clicks on view rules link',
               })
             }
           >

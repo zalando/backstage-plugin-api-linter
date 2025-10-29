@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { useApi } from "@backstage/core-plugin-api";
-import { zallyApiRef } from "../../api";
-import { Box, Button, Typography } from "@material-ui/core";
-import { Loading } from "../Loading";
-import { DetailsCard } from "./components/DetailsCard";
-import * as S from "./styles";
-import { Rule } from "../../api/types";
-import { ICommonEventInfo, IEventTracking } from "../../event-types";
+import React, { useEffect, useState } from 'react';
+import { useApi } from '@backstage/core-plugin-api';
+import { zallyApiRef } from '../../api';
+import { Box, Button, Typography } from '@material-ui/core';
+import { Loading } from '../Loading';
+import { DetailsCard } from './components/DetailsCard';
+import * as S from './styles';
+import { Rule } from '../../api/types';
+import { ICommonEventInfo, IEventTracking } from '../../event-types';
 
 type RulesProps = {
   openRules: boolean;
@@ -27,7 +27,7 @@ export const Rules: React.FC<RulesProps> = ({
   useEffect(() => {
     const fetchData = async () => {
       const response = await zally.getRules();
-      const filterdRules = response.filter((item) => item.type !== "HINT");
+      const filterdRules = response.filter(item => item.type !== 'HINT');
       setRules(filterdRules);
     };
     fetchData();

@@ -3,6 +3,7 @@
   "version": "1.0.12",
   "description": "API Linter is a quality assurance tool that checks the compliance of API's specifications to Zalando's API rules.",
   "main": "src/index.ts",
+  "packageManager": "yarn@4.10.3",
   "publishConfig": {
     "access": "public",
     "main": "dist/index.esm.js",
@@ -33,25 +34,33 @@
     "@backstage/theme": "^0.2.13",
     "@material-ui/core": "^4.12.2",
     "@material-ui/icons": "^4.9.1",
-    "@material-ui/lab": "4.0.0-alpha.57",
-    "@types/react": "^17",
-    "@types/react-dom": "^17",
-    "react-dom": "^16.13.1 || ^17.0.0"
+    "@material-ui/lab": "4.0.0-alpha.57"
   },
   "devDependencies": {
     "@backstage/cli": "^0.21.1",
     "@backstage/core-app-api": "^1.2.0",
+    "@backstage/core-components": "^0.12.0",
+    "@backstage/core-plugin-api": "^1.0.5",
     "@backstage/dev-utils": "^1.0.8",
     "@backstage/test-utils": "^1.2.2",
-    "@testing-library/jest-dom": "^5.10.1",
+    "@backstage/theme": "^0.2.13",
+    "@material-ui/core": "^4.12.2",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "4.0.0-alpha.57",
+    "@spotify/prettier-config": "^15.0.0",
+    "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^12.1.3",
     "@testing-library/user-event": "^13.1.8",
-    "@types/jest": "*",
+    "@types/jest": "^29",
     "@types/node": "*",
+    "@types/react": "^17",
+    "@types/react-dom": "^17",
     "@types/swagger-ui-react": "^4.1.1",
     "cross-fetch": "^3.0.6",
     "husky": "^8.0.1",
-    "msw": "^0.35.0"
+    "msw": "^0.35.0",
+    "prettier": "^3.6.2",
+    "pretty-quick": "^4.2.2"
   },
   "scripts": {
     "build": "backstage-cli package build",
@@ -64,7 +73,10 @@
     "prepack": "backstage-cli package prepack",
     "postpack": "backstage-cli package postpack",
     "clean": "backstage-cli package clean",
-    "install:ci": "yarn add react@17.0.2"
+    "install:ci": "yarn add react@17.0.2",
+    "format:all": "prettier \"**/*.{ts,tsx,js,jsx,json,md}\" --write",
+    "format:check": "prettier \"**/*.{ts,tsx,js,jsx,json,md}\" --check",
+    "format:staged": "pretty-quick --staged"
   },
   "repository": {
     "type": "git",
@@ -104,5 +116,11 @@
       "name": "Tronje Krop",
       "email": "tronje.krop@zalando.de"
     }
-  ]
+  ],
+  "prettier": "@spotify/prettier-config",
+  "resolutions": {
+    "@types/react": "^17.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
 }

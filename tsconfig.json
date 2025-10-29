@@ -7,8 +7,8 @@
     "rootDir": ".",
     "skipLibCheck": true,
     "typeRoots": ["**/typings", "node_modules/@types"],
-    "types": ["node", "jest", "express"],
+    "types": ["node", "jest", "express", "@testing-library/jest-dom"],
     "resolveJsonModule": true,
-    "downlevelIteration": true,
+    "downlevelIteration": true
   }
 }
