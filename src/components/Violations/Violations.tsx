@@ -1,9 +1,9 @@
-import React from "react";
-import { ViolationsResponse } from "../../api/types";
-import { ICommonEventInfo, IEventTracking } from "../../event-types";
-import { Loading } from "../Loading";
-import { ViolationsCard } from "./components";
-import * as S from "./styles";
+import React from 'react';
+import { ViolationsResponse } from '../../api/types';
+import { ICommonEventInfo, IEventTracking } from '../../event-types';
+import { Loading } from '../Loading';
+import { ViolationsCard } from './components';
+import * as S from './styles';
 
 type ViolationsProps = {
   response?: ViolationsResponse;

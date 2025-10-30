@@ -1,0 +1,26 @@
+# Verify workflow runs on PRs to validate build and tests, and preview release outcome in dry-run.
+name: Verify
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Enable Corepack (Yarn 4)
+        run: corepack enable
+      - run: yarn install --immutable
+      - run: yarn tsc
+      - run: yarn build
+      - run: yarn test:ci

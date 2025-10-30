@@ -17,5 +17,5 @@ export const ViolationsWrapper = styled('div')({
 
 export const ViolationsPlaceholder = styled(Typography)({
   margin: 52,
-  textAlign: 'center'
+  textAlign: 'center',
 });

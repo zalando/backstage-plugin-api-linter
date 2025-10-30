@@ -19,9 +19,9 @@ export type IEventTracking = {
    * @example `"Repository Creator"`
    */
   eventCategory: string;
-}
+};
 
 export type ICommonEventInfo = {
   plugin: string;
   eventCategory: string;
-}
+};

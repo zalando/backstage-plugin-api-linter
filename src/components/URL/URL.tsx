@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { ViolationsResponse, ViolationsByUrl } from "../../api/types";
-import { ICommonEventInfo, IEventTracking } from "../../event-types";
-import { isValidHttpUrl } from "../../helpers";
-import { URLValidator } from "./components/URLValidator";
+import React, { useEffect, useState } from 'react';
+import { ViolationsResponse, ViolationsByUrl } from '../../api/types';
+import { ICommonEventInfo, IEventTracking } from '../../event-types';
+import { isValidHttpUrl } from '../../helpers';
+import { URLValidator } from './components/URLValidator';
 
 type URLProps = {
   open: boolean;
@@ -27,27 +27,27 @@ export const URLComponent: React.FC<URLProps> = ({
   handleUrlStorage,
   urlStorage,
 }) => {
-  const [input, setInput] = useState("");
-  const [error, setError] = useState("");
+  const [input, setInput] = useState('');
+  const [error, setError] = useState('');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setError("");
+    setError('');
     setInput(e.target.value);
     handleUrlStorage(e.target.value);
   };
 
   const handleSubmit = () => {
-    setError("");
-    onError("");
+    setError('');
+    onError('');
     onResponse(undefined);
     sendEvent?.({
       ...(event as ICommonEventInfo),
-      eventLabel: "onSubmit import URL",
+      eventLabel: 'onSubmit import URL',
       eventAction: `validates API by URL: ${input}`,
     });
 
     if (!isValidHttpUrl(input)) {
-      setError("Please enter a valid url");
+      setError('Please enter a valid url');
       return;
     }
 
@@ -59,8 +59,8 @@ export const URLComponent: React.FC<URLProps> = ({
     onOpen(false);
     sendEvent?.({
       ...(event as ICommonEventInfo),
-      eventLabel: "on Close import URL input dialog",
-      eventAction: "closes import URL input dialog",
+      eventLabel: 'on Close import URL input dialog',
+      eventAction: 'closes import URL input dialog',
     });
   };
 
