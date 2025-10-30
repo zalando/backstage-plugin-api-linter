@@ -25,7 +25,6 @@ jobs:
       - run: yarn build
       - run: yarn test:ci
       - name: Semantic release (dry run)
-        if: ${{ github.event.pull_request.head.repo.fork == false }}
         run: yarn release --dry-run
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
