@@ -1,27 +1,32 @@
-# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
-# For more information see: https://help.github.com/actions/language-and-framework-guides/publishing-nodejs-packages
+# Release workflow powered by semantic-release.
+# Only publishes when conventional commits since last release warrant a release.
 
-name: Node.js Package
+name: Release
 
 on:
-  release:
-    types: [created]
   push:
     branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
-  publish-npm:
+  release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
         with:
           node-version: 18
           registry-url: https://registry.npmjs.org/
-      - run: yarn install
+      - name: Enable Corepack (Yarn 4)
+        run: corepack enable
+      - run: yarn install --immutable
       - run: yarn install:ci
       - run: yarn tsc
       - run: yarn build
-      - run: npm publish
+      - name: Run semantic-release
+        run: yarn release
         env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
