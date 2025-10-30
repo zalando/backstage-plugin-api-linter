@@ -21,7 +21,11 @@ Follow these steps to contribute your work to backstage-plugin-api-linter:
 4. Test your changes.
 5. Open a [Pull Request](https://github.com/zalando/backstage-plugin-api-linter/pulls) when your code is ready for
    review.
-    1. Mention the issue number in the comment (e.g. Fixes #37).
+   1. Mention the issue number in the comment (e.g. Fixes #37).
 6. We will review your PR, give feedback, and merge when it is ready.
+
+## Commit style and releases
+
+To ensure a seamless release process, please follow the Conventional Commits style. Use `yarn commit` to open a guided prompt (Commitizen) that helps you craft a valid message. Do not manually bump the version in package.json — versions are determined and published automatically by semantic-release based on commit history.
 
 Thanks for your contribution!

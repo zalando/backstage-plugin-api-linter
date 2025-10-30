@@ -63,6 +63,7 @@
     "commitizen": "^4.3.1",
     "cross-fetch": "^3.0.6",
     "cz-conventional-changelog": "^3.3.0",
+    "eslint-plugin-jest": "^27",
     "husky": "^8.0.1",
     "msw": "^0.35.0",
     "prettier": "^3.6.2",
@@ -70,6 +71,7 @@
     "semantic-release": "^24.1.1"
   },
   "scripts": {
+    "postinstall": "husky install",
     "build": "backstage-cli package build",
     "start": "backstage-cli package start",
     "lint": "backstage-cli package lint",
@@ -80,7 +82,6 @@
     "prepack": "backstage-cli package prepack",
     "postpack": "backstage-cli package postpack",
     "clean": "backstage-cli package clean",
-    "install:ci": "yarn add react@17.0.2",
     "format:all": "prettier \"**/*.{ts,tsx,js,jsx,json,md}\" --write",
     "format:check": "prettier \"**/*.{ts,tsx,js,jsx,json,md}\" --check",
     "format:staged": "pretty-quick --staged",
@@ -102,31 +103,14 @@
     "backstage",
     "plugin"
   ],
-  "author": "Natalya Peixoto natalya.peixoto@zalando.de",
   "license": "MIT",
   "files": [
     "dist"
-  ],
-  "maintainers": [
-    "Natalya Peixoto <natalya.peixoto@zalando.de>",
-    "Ewa <ewa.maslocha@zalando.de>",
-    "Tronje Krop <tronje.krop@zalando.de>"
   ],
   "bugs": {
     "url": "https://github.com/zalando/backstage-api-linter-plugin/issues"
   },
   "homepage": "https://github.com/zalando/backstage-api-linter-plugin#readme",
-  "contributors": [
-    {
-      "name": "Natalya Peixoto",
-      "email": "natalya.peixoto@zalando.de",
-      "url": "https://github.com/natalyapeixoto"
-    },
-    {
-      "name": "Tronje Krop",
-      "email": "tronje.krop@zalando.de"
-    }
-  ],
   "config": {
     "commitizen": {
       "path": "cz-conventional-changelog"

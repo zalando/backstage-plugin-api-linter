@@ -45,10 +45,10 @@ With [tabbed layout](https://backstage.io/storybook/?path=/story/navigation-tabb
 ```jsx
 <TabbedLayout>
   <TabbedLayout.Route path="/" title="another title">
-    <AnotherExampleComponent/>
+    <AnotherExampleComponent />
   </TabbedLayout.Route>
   <TabbedLayout.Route path="/linter" title="LINTER" data-id="api-linter">
-    <APILinter/>
+    <APILinter />
   </TabbedLayout.Route>
 </TabbedLayout>
 ```
@@ -57,7 +57,7 @@ Content
 
 ```javascript
 <Content>
-  <APILinter/>
+  <APILinter />
 </Content>
 ```
 
@@ -107,7 +107,7 @@ interface IEventTracking {
 
 ```javascript
 function sendPageView() {
-  GoogleAnalytics.set({page: window.location.pathname});
+  GoogleAnalytics.set({ page: window.location.pathname });
   GoogleAnalytics.pageview(window.location.pathname + window.location.search);
 }
 ```
@@ -140,3 +140,24 @@ eventInfo will be the same for all events
 - clicks on validate by schema button
 - hovers on api badge
 - hovers on api badge text
+
+## Committing changes and releases
+
+This repository uses Conventional Commits and semantic-release to automate versioning and publishing. Follow these steps when committing:
+
+- Use the guided commit prompt: run `yarn commit` instead of `git commit`.
+  - This launches Commitizen and helps you compose a valid conventional commit message (e.g., `feat: add new rule`, `fix: handle empty spec`).
+- Do not bump the version in package.json manually.
+  - The version is managed by semantic-release and is intentionally set to `0.0.0-semantic-release`. The real version is calculated from git history and applied during release.
+
+How versioning works with semantic-release:
+
+- A commit of type `fix:` (or `perf:`) triggers a patch release (e.g., 1.0.12 → 1.0.13).
+- A commit of type `feat:` triggers a minor release (e.g., 1.0.12 → 1.1.0).
+- Any commit that declares a breaking change (footer `BREAKING CHANGE:` or an exclamation mark after type, like `feat!: ...`) triggers a major release (e.g., 1.x → 2.0.0).
+- Other types like `docs:`, `chore:`, `test:` generally do not trigger a release unless they include a breaking change note.
+
+Previewing a release for your PR:
+
+- Our Verify workflow on pull requests runs `yarn release --dry-run` and posts logs under the PR Checks.
+- Open your PR → Checks → Verify → look for the "Semantic release (dry run)" step to see whether a release would occur and what the next version would be.
