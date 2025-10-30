@@ -68,7 +68,7 @@
     "msw": "^0.35.0",
     "prettier": "^3.6.2",
     "pretty-quick": "^4.2.2",
-    "semantic-release": "^24.1.1"
+    "semantic-release": "19.0.2"
   },
   "scripts": {
     "postinstall": "husky install",
