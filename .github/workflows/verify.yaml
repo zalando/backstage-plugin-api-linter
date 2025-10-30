@@ -21,7 +21,6 @@ jobs:
       - name: Enable Corepack (Yarn 4)
         run: corepack enable
       - run: yarn install --immutable
-      - run: yarn install:ci
       - run: yarn tsc
       - run: yarn build
       - run: yarn test:ci
