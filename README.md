@@ -1,5 +1,3 @@
-[![Node.js CI](https://github.com/zalando/backstage-api-linter-plugin/actions/workflows/node.js.yml/badge.svg?branch=main)](https://github.com/zalando/backstage-api-linter-plugin/actions/workflows/node.js.yml)
-
 # backstage-plugin-api-linter
 
 Welcome to the Backstage Plugin API Linter!
@@ -62,6 +60,21 @@ Content
 ```
 
 <img src='./docs/linter.png' alt='api-linter screen shot'>
+
+## Running the plugin locally
+
+Follow these steps to run the plugin locally for development:
+
+1. Start Zally locally using Docker.
+   - Please follow the official Zally instructions here: https://github.com/zalando/zally
+2. Install dependencies for the local backend server (it mimics the Backstage backend by proxying requests to Zally):
+   ```bash
+   yarn --cwd dev install
+   ```
+3. Run the development environment (this starts both the frontend and the local backend concurrently):
+   ```bash
+   yarn dev
+   ```
 
 ## How to track user behaviour
 
