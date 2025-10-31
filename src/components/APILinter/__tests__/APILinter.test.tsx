@@ -1,18 +1,21 @@
-import React from 'react';
 import { APILinter } from '../APILinter';
 import { ThemeProvider } from '@material-ui/core';
-import { lightTheme } from '@backstage/theme';
+import { themes } from '@backstage/theme';
 import { renderInTestApp, TestApiProvider } from '@backstage/test-utils';
 import userEvent from '@testing-library/user-event';
-import { act, screen } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import { zallyApiRef } from '../../../api';
 import { mockZallyApi, mockZallyApiEmpty } from './mocks';
 import schema from './schemaMock.json';
+import '@testing-library/jest-dom';
 
-async function renderApp() {
-  await renderInTestApp(
-    <TestApiProvider apis={[[zallyApiRef, mockZallyApi]]}>
-      <ThemeProvider theme={lightTheme}>
+const stringSchema = encodeURIComponent(JSON.stringify(schema));
+
+function renderApp(withEmpty = false) {
+  const mockApi = withEmpty ? mockZallyApiEmpty : mockZallyApi;
+  return renderInTestApp(
+    <TestApiProvider apis={[[zallyApiRef, mockApi]]}>
+      <ThemeProvider theme={themes.light}>
         <APILinter />
       </ThemeProvider>
     </TestApiProvider>,
@@ -24,8 +27,6 @@ describe('APILinter', () => {
 
   beforeAll(() => {
     originalSessionStorage = window.sessionStorage;
-    // @ts-ignore
-    delete window.sessionStorage;
     Object.defineProperty(window, 'sessionStorage', {
       writable: true,
       value: {
@@ -36,10 +37,8 @@ describe('APILinter', () => {
   });
 
   beforeEach(() => {
-    // @ts-ignore
-    sessionStorage.getItem.mockClear();
-    // @ts-ignore
-    sessionStorage.setItem.mockClear();
+    (sessionStorage.getItem as jest.Mock).mockClear();
+    (sessionStorage.setItem as jest.Mock).mockClear();
   });
 
   afterAll(() => {
@@ -48,93 +47,62 @@ describe('APILinter', () => {
       value: originalSessionStorage,
     });
   });
+
   it('should render rules', async () => {
-    renderApp();
-
-    act(() => {
-      userEvent.click(screen.getByText(/view the rules/i));
-    });
-
-    const ruleCards = await screen.findAllByTestId('rule');
+    const { getByText, findAllByTestId } = await renderApp();
+    fireEvent.click(getByText(/view the rules/i));
+    const ruleCards = await findAllByTestId('rule');
     expect(ruleCards.length).toBeGreaterThan(0);
   });
 
   it('should render URL dialog and display violation', async () => {
-    renderApp();
+    const { getByText, getByTestId, findByTestId, findAllByTestId } =
+      await renderApp();
 
-    userEvent.click(screen.getByText(/import url/i));
-
-    const urlInput = screen.getByText(/Enter the url to import from/i);
-    userEvent.type(urlInput, 'https://www.rawapi.com.br/api.json');
-
-    userEvent.click(screen.getByTestId(/url-validate/i));
-
-    const violations = await screen.findAllByTestId(/violation/i);
+    fireEvent.click(getByText(/import url/i));
+    const urlInput = getByText(/Enter the url to import from/i);
+    await userEvent.type(urlInput, 'https://www.rawapi.com.br/api.json');
+    fireEvent.click(getByTestId(/url-validate/i));
+    const violations = await findAllByTestId(/violation/i);
     expect(violations.length).toBe(1);
-    expect(await screen.findByTestId('must')).toBeInTheDocument();
+    expect(await findByTestId('must')).toBeInTheDocument();
   });
 
   it('should render Schema and display violations', async () => {
-    renderApp();
-
-    const schemaInput = screen.getByText(/Paste a swagger schema here/i);
+    const { getByText, getByTestId, findAllByTestId } = await renderApp();
+    const schemaInput = getByText(/Paste a swagger schema here/i);
     expect(schemaInput).toBeInTheDocument();
-
-    act(() => {
-      userEvent.type(schemaInput, JSON.stringify(schema));
-    });
-
-    await userEvent.click(screen.getByTestId(/schema-validate/i));
-
-    const violations = await screen.findAllByTestId(/violation/i);
+    await userEvent.type(schemaInput, stringSchema);
+    fireEvent.click(getByTestId(/schema-validate/i));
+    const violations = await findAllByTestId(/violation/i);
     expect(violations.length).toBe(1);
   });
 });
 
 describe('APILinter - No violations / Error', () => {
-  beforeEach(async () => {
-    await renderInTestApp(
-      <TestApiProvider apis={[[zallyApiRef, mockZallyApiEmpty]]}>
-        <ThemeProvider theme={lightTheme}>
-          <APILinter />
-        </ThemeProvider>
-      </TestApiProvider>,
-    );
-  });
-
   it('should display perfect badge when no violations are found', async () => {
-    act(() => {
-      userEvent.click(screen.getByText(/import url/i));
-    });
-
-    const urlInput = screen.getByText(/Enter the url to import from/i);
-    userEvent.type(urlInput, 'https://www.perfectapi.com.br/api.json');
-
-    await userEvent.click(screen.getByTestId(/url-validate/i));
-
-    expect(await screen.findByTestId(/perfect/i)).toBeInTheDocument();
+    const { getByTestId, getByText, findByTestId } = await renderApp(true);
+    fireEvent.click(getByText(/import url/i));
+    const urlInput = getByText(/Enter the url to import from/i);
+    await userEvent.type(urlInput, 'https://www.perfectapi.com.br/api.json');
+    fireEvent.click(getByTestId(/url-validate/i));
+    expect(await findByTestId(/perfect/i)).toBeInTheDocument();
   });
 
   it('should not submit when user types invalid url', async () => {
-    userEvent.click(screen.getByText(/import url/i));
-
-    const urlInput = screen.getByText(/Enter the url to import from/i);
-    userEvent.type(urlInput, 'invalid-url');
-
-    userEvent.click(screen.getByTestId(/url-validate/i));
-
-    expect(
-      await screen.getByText(/enter the URL to import from/i),
-    ).toBeInTheDocument();
+    const { getByText, getByTestId } = await renderApp(true);
+    fireEvent.click(getByText(/import url/i));
+    const urlInput = getByText(/Enter the url to import from/i);
+    await userEvent.type(urlInput, 'invalid-url');
+    fireEvent.click(getByTestId(/url-validate/i));
+    expect(getByText(/enter the URL to import from/i)).toBeInTheDocument();
   });
 
   it('should render Schema and display correct badge when no violations are found', async () => {
-    const schemaInput = screen.getByText(/Paste a swagger schema here/i);
-    act(() => {
-      userEvent.type(schemaInput, JSON.stringify(schema));
-    });
-    await userEvent.click(screen.getByText(/Validate/i));
-
-    expect(await screen.findByTestId('perfect')).toBeInTheDocument();
+    const { getByText, findByTestId } = await renderApp(true);
+    const schemaInput = getByText(/Paste a swagger schema here/i);
+    await userEvent.type(schemaInput, stringSchema);
+    fireEvent.click(getByText(/Validate/i));
+    expect(await findByTestId('perfect')).toBeInTheDocument();
   });
 });

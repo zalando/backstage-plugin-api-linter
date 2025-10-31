@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useApi } from '@backstage/core-plugin-api';
 import { zallyApiRef } from '../../api';
 import { Box, Button, Drawer, Typography } from '@material-ui/core';

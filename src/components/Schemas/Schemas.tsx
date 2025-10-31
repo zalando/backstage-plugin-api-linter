@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import AceEditor from 'react-ace';
 import 'ace-builds/src-noconflict/mode-java';
 import 'ace-builds/src-noconflict/theme-github';
@@ -136,6 +136,7 @@ export const Schemas: React.FC<SchemasProps> = ({
         </S.EditorWrapper>
 
         <S.SwaggerUIWrapper>
+          {/* @ts-ignore */}
           <SwaggerUI spec={schemaValue} />
         </S.SwaggerUIWrapper>
 

@@ -1,5 +1,4 @@
 import { CardContent, Typography } from '@material-ui/core';
-import React from 'react';
 import { Link } from '@backstage/core-components';
 import * as S from './style';
 import { ICommonEventInfo, IEventTracking } from '../../../../event-types';
