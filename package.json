@@ -88,7 +88,7 @@
     "start:backend": "yarn --cwd dev start",
     "dev": "concurrently \"yarn start\" \"yarn start:backend\"",
     "tsc": "npx tsc",
-    "test:ci": "backstage-cli package test --ci --no-watchman --no-watch --silent --forceExit --detectOpenHandles --no-cache --coverage=false --runInBand",
+    "test:ci": "backstage-cli package test --ci --no-watchman --no-watch --silent --no-cache --coverage=false",
     "format:all": "prettier \"**/*.{ts,tsx,js,jsx,json,md}\" --write",
     "format:check": "prettier \"**/*.{ts,tsx,js,jsx,json,md}\" --check",
     "format:staged": "pretty-quick --staged",

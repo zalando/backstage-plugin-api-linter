@@ -1,12 +1,12 @@
-import { APILinter } from '../APILinter';
+import { APILinter } from '.';
 import { ThemeProvider } from '@material-ui/core';
 import { themes } from '@backstage/theme';
 import { renderInTestApp, TestApiProvider } from '@backstage/test-utils';
 import userEvent from '@testing-library/user-event';
 import { fireEvent } from '@testing-library/react';
-import { zallyApiRef } from '../../../api';
-import { mockZallyApi, mockZallyApiEmpty } from './mocks';
-import schema from './schemaMock.json';
+import { zallyApiRef } from '../../api';
+import { mockZallyApi, mockZallyApiEmpty } from './__tests__/mocks';
+import schema from './__tests__/schemaMock.json';
 import '@testing-library/jest-dom';
 
 const stringSchema = encodeURIComponent(JSON.stringify(schema));
