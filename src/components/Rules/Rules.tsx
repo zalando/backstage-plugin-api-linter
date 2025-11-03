@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useApi } from '@backstage/core-plugin-api';
 import { zallyApiRef } from '../../api';
-import { Box, Button, Typography } from '@material-ui/core';
+import { Box, Button, Drawer, Typography } from '@material-ui/core';
 import { Loading } from '../Loading';
 import { DetailsCard } from './components/DetailsCard';
-import * as S from './styles';
+import { useStyles } from './styles';
 import { Rule } from '../../api/types';
 import { ICommonEventInfo, IEventTracking } from '../../event-types';
 
@@ -23,6 +23,7 @@ export const Rules: React.FC<RulesProps> = ({
 }) => {
   const [rules, setRules] = useState<Rule[]>([]);
   const zally = useApi(zallyApiRef);
+  const styles = useStyles();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,11 +35,12 @@ export const Rules: React.FC<RulesProps> = ({
   }, [zally]);
 
   return (
-    <S.Drawer
+    <Drawer
       anchor="right"
       open={openRules}
       onClose={toggleDrawer}
       className="rules-drawer"
+      classes={{ paper: styles.drawerPaper }}
     >
       <Box display="flex" justifyContent="space-between">
         <Typography variant="h5">Zalando's API Rules</Typography>
@@ -59,6 +61,6 @@ export const Rules: React.FC<RulesProps> = ({
       ))}
 
       {!rules.length && <Loading />}
-    </S.Drawer>
+    </Drawer>
   );
 };

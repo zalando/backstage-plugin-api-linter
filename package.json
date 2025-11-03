@@ -61,6 +61,7 @@
     "@types/react-dom": "^17",
     "@types/swagger-ui-react": "^4.1.1",
     "commitizen": "^4.3.1",
+    "concurrently": "^9.2.1",
     "cross-fetch": "^3.0.6",
     "cz-conventional-changelog": "^3.3.0",
     "eslint-plugin-jest": "^27",
@@ -71,12 +72,14 @@
     "semantic-release": "19.0.2"
   },
   "scripts": {
+    "start:backend": "yarn --cwd dev start",
     "postinstall": "husky install",
     "build": "backstage-cli package build",
     "start": "backstage-cli package start",
     "lint": "backstage-cli package lint",
     "test": "backstage-cli package test",
-    "tsc": "tsc",
+    "dev": "concurrently \"yarn start\" \"yarn start:backend\"",
+    "tsc": "npx tsc",
     "test:ci": "backstage-cli test --no-watch --silent --forceExit --detectOpenHandles --no-cache --coverage=false --runInBand",
     "diff": "backstage-cli plugin:diff",
     "prepack": "backstage-cli package prepack",
