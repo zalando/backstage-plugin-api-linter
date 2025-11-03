@@ -2,10 +2,12 @@ import { useEffect } from 'react';
 import AceEditor from 'react-ace';
 import 'ace-builds/src-noconflict/mode-java';
 import 'ace-builds/src-noconflict/theme-github';
+import 'ace-builds/src-noconflict/theme-one_dark';
 import 'brace';
 import 'brace/ext/language_tools';
 import 'brace/ext/searchbox';
 import 'brace/theme/chrome';
+import 'brace/theme/dracula';
 import 'brace/mode/yaml';
 import 'brace/mode/json';
 import 'brace/snippets/yaml';
@@ -20,6 +22,7 @@ import SwaggerUI from 'swagger-ui-react';
 import Button from '@mui/material/Button';
 import * as S from './styles';
 import type { ICommonEventInfo, IEventTracking } from '../../event-types';
+import { useTheme } from '@mui/material/styles';
 
 type SchemasProps = {
   onInputChange: (value: string) => void;
@@ -50,6 +53,7 @@ export function Schemas({
   handleSchemaStorage,
   handleClearAll,
 }: SchemasProps) {
+  const theme = useTheme();
   const handleOnClick = () => {
     openUrlDialog();
     sendEvent?.({
@@ -90,11 +94,12 @@ export function Schemas({
           variant="text"
           disableRipple
           onClick={handleOnClick}
+          data-testid="import-url-btn"
           sx={{
             fontSize: '1rem',
             '&:hover': {
               background: 'none',
-              textDecoration: 'underline !important',
+              textDecoration: 'underline',
             },
           }}
         >
@@ -134,7 +139,7 @@ export function Schemas({
             mode={mode}
             width="100%"
             height="100%"
-            theme="chrome"
+            theme={theme.palette.mode === 'dark' ? 'dracula' : 'chrome'}
             showPrintMargin={false}
             onChange={onInputChange}
             name="editor"

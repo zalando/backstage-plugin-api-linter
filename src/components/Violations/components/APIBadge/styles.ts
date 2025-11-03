@@ -33,5 +33,4 @@ export const BadgeWrapper = styled('div')({
   display: 'flex',
   justifyContent: 'flex-start',
   alignItems: 'center',
-  color: '#101419',
 });

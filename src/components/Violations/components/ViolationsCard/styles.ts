@@ -7,11 +7,9 @@ export const Card = styled(CardUI)({
   display: 'flex',
   flexDirection: 'column',
   marginTop: 16,
-  backgroundColor: 'rgb(242, 242, 242)',
 });
 
 export const CardText = styled(Typography)({
-  color: '#101419',
   wordBreak: 'break-word',
   overflowWrap: 'break-word',
   hyphens: 'auto',
@@ -26,12 +24,11 @@ export const ContentWrapper = styled('div')({
   },
 });
 
-export const Link = styled(LinkUI)(({ theme }) => ({
+export const Link = styled(LinkUI)({
   wordBreak: 'break-word',
   overflowWrap: 'break-word',
   hyphens: 'auto',
-  color: `${theme.palette.primary.dark} !important`,
-}));
+});
 
 export const DetailsTitle = styled(Typography)({
   color: '#101419',

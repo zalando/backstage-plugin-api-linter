@@ -3,7 +3,6 @@ import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import TextField from '@mui/material/TextField';
 import type { ICommonEventInfo, IEventTracking } from '../../../../event-types';
 
@@ -33,29 +32,27 @@ export const URLValidator = ({
     open={open}
     onClose={handleClose}
     aria-labelledby="alert-dialog-title"
-    aria-describedby="alert-dialog-description"
   >
     <DialogContent>
-      <DialogContentText id="alert-dialog-description">
-        <TextField
-          onFocus={() =>
-            sendEvent?.({
-              ...(event as ICommonEventInfo),
-              eventLabel: 'onFocus import URL input',
-              eventAction: 'focus on import URL input',
-            })
-          }
-          error={!!error}
-          id="outlined-error-helper-text"
-          label="Enter the URL to import from"
-          placeholder="https://raw.githubusercontent.com/OAI/OpenAPI-Specification/master/examples/v2.0/json/petstore.json"
-          helperText={error}
-          fullWidth
-          onChange={onInputChange}
-          value={inputValue}
-          sx={{ width: 650, height: 50 }}
-        />
-      </DialogContentText>
+      <TextField
+        onFocus={() =>
+          sendEvent?.({
+            ...(event as ICommonEventInfo),
+            eventLabel: 'onFocus import URL input',
+            eventAction: 'focus on import URL input',
+          })
+        }
+        error={!!error}
+        id="outlined-error-helper-text"
+        data-testid="import-url-wrapper"
+        label="Enter the URL to import from"
+        placeholder="https://raw.githubusercontent.com/OAI/OpenAPI-Specification/master/examples/v2.0/json/petstore.json"
+        helperText={error}
+        fullWidth
+        onChange={onInputChange}
+        value={inputValue}
+        sx={{ width: 650, height: 50 }}
+      />
     </DialogContent>
 
     <DialogActions sx={{ padding: '0 24px 50px 24px' }}>

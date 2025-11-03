@@ -34,7 +34,10 @@ export function DetailsCard({
         display: 'flex',
         flexDirection: 'column',
         marginTop: 2,
-        backgroundColor: 'rgb(242, 242, 242)',
+        backgroundColor: theme =>
+          theme.palette.mode === 'light'
+            ? theme.palette.grey.A200
+            : theme.palette.background.default,
       }}
       onClick={() =>
         sendEvent?.({
@@ -55,7 +58,7 @@ export function DetailsCard({
             })
           }
         />
-        <S.CardText variant="h6">{title}</S.CardText>
+        <Typography variant="h6">{title}</Typography>
 
         {description && (
           <S.CardText variant="subtitle1">{description}</S.CardText>
@@ -72,14 +75,7 @@ export function DetailsCard({
             })
           }
         >
-          <Box
-            component={Link}
-            sx={{
-              wordBreak: 'break-all',
-              color: theme => `${theme.palette.primary.dark} !important`,
-            }}
-            to={link}
-          >
+          <Box component={Link} sx={{ wordBreak: 'break-all' }} to={link}>
             Rule: {link}
           </Box>
         </Typography>

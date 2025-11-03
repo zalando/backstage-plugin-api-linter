@@ -11,6 +11,7 @@ type ChipColorStyles = Record<ViolationType, string>;
 
 export const Chip = styled(ChipUI)<{ label: string }>(({ theme, label }) => {
   const type = label.split(':')[0] as ViolationType;
+  const isLight = theme.palette.mode === 'light';
 
   const colorForViolation: ChipColorStyles = {
     must: theme.palette.error.main,
@@ -20,8 +21,8 @@ export const Chip = styled(ChipUI)<{ label: string }>(({ theme, label }) => {
 
   return {
     border: `1px solid ${colorForViolation[type]}`,
-    color: '#212121',
-    backgroundColor: '#fff',
+    color: isLight ? '#212121' : undefined,
+    backgroundColor: isLight ? '#fff' : undefined,
     textTransform: 'capitalize',
     fontSize: '12px',
   };

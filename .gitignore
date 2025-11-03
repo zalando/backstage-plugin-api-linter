@@ -30,3 +30,6 @@ dist-types
 !**/*.yarn/sdks
 !**/*.yarn/versions
 **/*.yarn-integrity
+
+# test
+coverage

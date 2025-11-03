@@ -50,7 +50,6 @@ export function ViolationsCard({
             fontWeight: 'normal',
             textTransform: 'none',
             marginBlock: 1.5,
-            color: 'primary.dark',
           }}
         >
           Create permanent URL
@@ -117,13 +116,13 @@ export function ViolationsCard({
                     Rule: {getRuleNumberFromLink(rule_link)}
                   </S.Link>
                 </Typography>
-                <S.CardText variant="subtitle1" key={pointer}>
+                <div>
                   {!Array.isArray(description) && (
-                    <S.CardText variant="subtitle1" key={pointer}>
+                    <S.CardText variant="body2" key={pointer}>
                       {description}
                     </S.CardText>
                   )}
-                </S.CardText>
+                </div>
                 <ViolationsDetails
                   paths={paths}
                   pointer={pointer}

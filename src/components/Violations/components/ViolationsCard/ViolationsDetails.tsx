@@ -42,19 +42,17 @@ export function ViolationsDetails({
             )}
             {shouldDisplayDescription &&
               (description as string[]).map((item: string, i: number) => (
-                <>
-                  <S.CardText variant="subtitle1">
-                    <strong>{i + 1} - </strong> {item}
-                  </S.CardText>
-                </>
+                <S.CardText variant="subtitle1" key={i}>
+                  <strong>{i + 1} - </strong> {item}
+                </S.CardText>
               ))}
 
             <>
               <S.DetailsTitle>
                 <strong>Locations:</strong>
               </S.DetailsTitle>
-              {paths.map(path => (
-                <S.ContentWrapper>
+              {paths.map((path, i) => (
+                <S.ContentWrapper key={i}>
                   <S.CardText variant="subtitle1">{path}</S.CardText>
                 </S.ContentWrapper>
               ))}
