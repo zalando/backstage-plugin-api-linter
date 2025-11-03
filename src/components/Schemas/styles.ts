@@ -52,6 +52,10 @@ export const SwaggerUIWrapper = styled(Paper)(({ theme }) => ({
     paddingTop: 42,
     fontSize: 14,
   },
+  /**
+   * These styles are taken from @backstage/plugin-api-docs
+   * @see https://github.com/backstage/backstage/blob/master/plugins/api-docs/src/components/OpenApiDefinitionWidget/OpenApiDefinition.tsx
+   */
   '& .swagger-ui': {
     fontFamily: theme.typography.fontFamily,
     color: theme.palette.text.primary,
