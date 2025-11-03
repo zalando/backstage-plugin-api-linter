@@ -7,10 +7,18 @@ on:
   push:
     branches: [ "main" ]
   workflow_dispatch:
-
+  
+permissions:
+  contents: read
+  
 jobs:
   release:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: write
+      issues: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v4
         with:
@@ -28,4 +36,3 @@ jobs:
         run: yarn release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
