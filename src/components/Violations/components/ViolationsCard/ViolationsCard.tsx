@@ -1,14 +1,16 @@
-import { Box, CardContent, Typography } from '@material-ui/core';
-import { ViolationsResponse } from '../../../../api/types';
-import LinkIcon from '@material-ui/icons/Link';
+import Box from '@mui/material/Box';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import type { ViolationsResponse } from '../../../../api/types';
+import LinkIcon from '@mui/icons-material/Link';
 import * as S from './styles';
-import { Button } from './styles';
+import Button from '@mui/material/Button';
 import { addIdForPermalink } from '../../helpers';
 import { APIBadge } from '../APIBadge';
 import { aggregateByViolation } from '../../../../helpers';
 import { ViolationsDetails } from './ViolationsDetails';
 import { Chip } from '../../../Rules/components/DetailsCard/style';
-import { ICommonEventInfo, IEventTracking } from '../../../../event-types';
+import type { ICommonEventInfo, IEventTracking } from '../../../../event-types';
 
 type ViolationsCardProps = ViolationsResponse & {
   onExternalIdChange: (v: string) => void;
@@ -16,14 +18,14 @@ type ViolationsCardProps = ViolationsResponse & {
   event?: ICommonEventInfo;
 };
 
-export const ViolationsCard: React.FC<ViolationsCardProps> = ({
+export function ViolationsCard({
   external_id,
   violations,
   violations_count,
   onExternalIdChange,
   sendEvent,
   event,
-}) => {
+}: ViolationsCardProps) {
   const handleClick = () => {
     onExternalIdChange(external_id);
     addIdForPermalink(external_id);
@@ -39,8 +41,19 @@ export const ViolationsCard: React.FC<ViolationsCardProps> = ({
   return (
     <Box display="flex" flexDirection="column">
       <Box display="flex" justifyContent="flex-end">
-        <Button onClick={handleClick} variant="text">
-          Create permanent URL <LinkIcon style={{ marginLeft: 6 }} />
+        <Button
+          onClick={handleClick}
+          variant="text"
+          endIcon={<LinkIcon />}
+          size="large"
+          sx={{
+            fontWeight: 'normal',
+            textTransform: 'none',
+            marginBlock: 1.5,
+            color: 'primary.dark',
+          }}
+        >
+          Create permanent URL
         </Button>
       </Box>
       <APIBadge
@@ -123,4 +136,4 @@ export const ViolationsCard: React.FC<ViolationsCardProps> = ({
       )}
     </Box>
   );
-};
+}

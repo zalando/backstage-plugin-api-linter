@@ -1,4 +1,4 @@
-import { Violation } from '../api/types';
+import type { Violation } from '../api/types';
 
 export const getIDFromURL = (baseUrl: string) => {
   const tokenPattern = /[\d|a-f]{8}-([\d|a-f]{4}-){3}[\d|a-f]{12}/g;

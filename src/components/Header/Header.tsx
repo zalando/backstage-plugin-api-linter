@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Box } from '@material-ui/core';
-import * as S from './styles';
-
+import Box from '@mui/material/Box';
 import { Banner } from '../Banner';
-import { ICommonEventInfo, IEventTracking } from '../../event-types';
+import type { ICommonEventInfo, IEventTracking } from '../../event-types';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
+import { Link } from '@backstage/core-components';
 
 type HeaderProps = {
   sendEvent: ((args: IEventTracking) => void) | undefined;
@@ -11,13 +13,9 @@ type HeaderProps = {
   eventInfo: ICommonEventInfo;
 };
 
-export const Header: React.FC<HeaderProps> = ({
-  sendEvent,
-  toggleDrawer,
-  eventInfo,
-}) => {
+export function Header({ sendEvent, toggleDrawer, eventInfo }: HeaderProps) {
   const [showBanner, setShowBanner] = useState(false);
-  const isRedirected = !!location.pathname.split('/').includes('redirected');
+  const isRedirected = location.pathname.split('/').includes('redirected');
 
   useEffect(() => {
     if (isRedirected) {
@@ -45,11 +43,17 @@ export const Header: React.FC<HeaderProps> = ({
           Sunrise as the old Zally UI has been deprecated.
         </Banner>
       )}
-      <Box display="flex" justifyContent="space-between">
-        <S.Title variant="subtitle1">
-          Check if your Swagger Schema conforms to
-          <S.SubtitleLink
-            to="https://sunrise.zalando.net/docs/default/Component/api/"
+      <Box display="flex" justifyContent="space-between" alignItems="start">
+        <Typography
+          variant="subtitle1"
+          sx={{
+            marginBottom: 2.75,
+            fontWeight: 500,
+          }}
+        >
+          Check if your Swagger Schema conforms to{' '}
+          <Link
+            to="https://opensource.zalando.com/restful-api-guidelines/"
             onClick={() =>
               sendEvent?.({
                 ...eventInfo,
@@ -59,23 +63,22 @@ export const Header: React.FC<HeaderProps> = ({
             }
           >
             Zalando's RESTful API and Event Guidelines
-          </S.SubtitleLink>
-        </S.Title>
-        <S.RulesLinkWrapper onClick={toggleDrawer}>
-          <S.BookIcon />
-          <S.RulesLink
-            onClick={() =>
-              sendEvent?.({
-                ...eventInfo,
-                eventLabel: 'onClick to view rules',
-                eventAction: 'clicks on view rules link',
-              })
-            }
-          >
-            VIEW THE RULES
-          </S.RulesLink>
-        </S.RulesLinkWrapper>
+          </Link>
+        </Typography>
+        <Button
+          startIcon={<MenuBookIcon />}
+          onClick={() => {
+            toggleDrawer();
+            sendEvent?.({
+              ...eventInfo,
+              eventLabel: 'onClick to view rules',
+              eventAction: 'clicks on view rules link',
+            });
+          }}
+        >
+          VIEW THE RULES
+        </Button>
       </Box>
     </>
   );
-};
+}

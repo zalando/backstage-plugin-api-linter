@@ -1,19 +1,7 @@
-import {
-  styled,
-  Button as ButtonUI,
-  Card as CardUI,
-  Typography,
-} from '@material-ui/core';
+import { styled } from '@mui/material/styles';
+import CardUI from '@mui/material/Card';
+import Typography from '@mui/material/Typography';
 import { Link as LinkUI } from '@backstage/core-components';
-
-export const Button = styled(ButtonUI)(({ theme }) => ({
-  color: theme.palette.warning.dark,
-  fontSize: 16,
-  textTransform: 'inherit',
-  fontWeight: 400,
-  margin: '12px 0',
-  paddingRight: 0,
-}));
 
 export const Card = styled(CardUI)({
   display: 'flex',
@@ -38,11 +26,12 @@ export const ContentWrapper = styled('div')({
   },
 });
 
-export const Link = styled(LinkUI)({
+export const Link = styled(LinkUI)(({ theme }) => ({
   wordBreak: 'break-word',
   overflowWrap: 'break-word',
   hyphens: 'auto',
-});
+  color: `${theme.palette.primary.dark} !important`,
+}));
 
 export const DetailsTitle = styled(Typography)({
   color: '#101419',

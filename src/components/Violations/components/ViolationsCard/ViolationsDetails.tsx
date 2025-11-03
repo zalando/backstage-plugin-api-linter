@@ -1,7 +1,8 @@
-import { Button, Collapse } from '@material-ui/core';
+import Button from '@mui/material/Button';
+import Collapse from '@mui/material/Collapse';
 import { useState } from 'react';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import ArrowDropUp from '@material-ui/icons/ArrowDropUp';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import ArrowDropUp from '@mui/icons-material/ArrowDropUp';
 import * as S from './styles';
 
 type ViolationsDetailsProps = {
@@ -10,11 +11,11 @@ type ViolationsDetailsProps = {
   description: string | string[];
 };
 
-export const ViolationsDetails: React.VFC<ViolationsDetailsProps> = ({
+export function ViolationsDetails({
   paths,
   pointer,
   description,
-}) => {
+}: ViolationsDetailsProps) {
   const hasMoreThanOnePath = (violat: string[]) => violat.length > 1;
   const [collapse, setCollapse] = useState(false);
 
@@ -28,7 +29,7 @@ export const ViolationsDetails: React.VFC<ViolationsDetailsProps> = ({
           <Button
             onClick={() => setCollapse(prev => !prev)}
             color="primary"
-            style={{ padding: '6px 0px' }}
+            sx={{ padding: '6px 0px' }}
           >
             {collapse ? 'hide' : 'show'} {paths.length} violation's details{' '}
             {collapse ? <ArrowDropUp /> : <ArrowDropDownIcon />}
@@ -71,4 +72,4 @@ export const ViolationsDetails: React.VFC<ViolationsDetailsProps> = ({
       )}
     </>
   );
-};
+}

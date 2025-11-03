@@ -1,10 +1,12 @@
-import { CardContent, Typography } from '@material-ui/core';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import Card from '@mui/material/Card';
 import { Link } from '@backstage/core-components';
 import * as S from './style';
-import { ICommonEventInfo, IEventTracking } from '../../../../event-types';
+import type { ICommonEventInfo, IEventTracking } from '../../../../event-types';
+import Box from '@mui/material/Box';
 
 type DetailsCardProps = {
-  key: string;
   title: string;
   description?: string;
   link: string;
@@ -15,8 +17,7 @@ type DetailsCardProps = {
   isViolation?: boolean;
 };
 
-export const DetailsCard: React.VFC<DetailsCardProps> = ({
-  key,
+export function DetailsCard({
   title,
   type,
   description,
@@ -25,11 +26,16 @@ export const DetailsCard: React.VFC<DetailsCardProps> = ({
   sendEvent,
   event,
   isViolation,
-}) => {
+}: DetailsCardProps) {
   const cardType = isViolation ? 'violation' : 'rule';
   return (
-    <S.Card
-      key={key}
+    <Card
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        marginTop: 2,
+        backgroundColor: 'rgb(242, 242, 242)',
+      }}
       onClick={() =>
         sendEvent?.({
           ...(event as ICommonEventInfo),
@@ -66,17 +72,24 @@ export const DetailsCard: React.VFC<DetailsCardProps> = ({
             })
           }
         >
-          <Link style={{ wordBreak: 'break-all' }} to={link}>
+          <Box
+            component={Link}
+            sx={{
+              wordBreak: 'break-all',
+              color: theme => `${theme.palette.primary.dark} !important`,
+            }}
+            to={link}
+          >
             Rule: {link}
-          </Link>
+          </Box>
         </Typography>
 
         {pointer && (
-          <S.CardText style={{ wordBreak: 'break-all' }} variant="subtitle1">
+          <S.CardText sx={{ wordBreak: 'break-all' }} variant="subtitle1">
             Location: {pointer}
           </S.CardText>
         )}
       </CardContent>
-    </S.Card>
+    </Card>
   );
-};
+}

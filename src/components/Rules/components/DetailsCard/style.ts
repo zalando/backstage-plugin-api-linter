@@ -1,34 +1,16 @@
-import { BackstageTheme } from '@backstage/theme';
-import {
-  styled,
-  Card as CardUI,
-  Chip as ChipUI,
-  Typography,
-} from '@material-ui/core';
-
-export const Card = styled(CardUI)({
-  display: 'flex',
-  flexDirection: 'column',
-  marginTop: 16,
-  backgroundColor: 'rgb(242, 242, 242)',
-});
+import { styled } from '@mui/material/styles';
+import ChipUI from '@mui/material/Chip';
+import Typography from '@mui/material/Typography';
 
 export const CardText = styled(Typography)({
   color: '#101419',
 });
 
-type ChipColorStyles = {
-  [x: string]: string;
-};
+type ViolationType = 'must' | 'should' | 'may';
+type ChipColorStyles = Record<ViolationType, string>;
 
-export const Chip = styled(ChipUI)(({
-  theme,
-  label,
-}: {
-  theme: BackstageTheme;
-  label: string;
-}) => {
-  const type = label.split(':')[0];
+export const Chip = styled(ChipUI)<{ label: string }>(({ theme, label }) => {
+  const type = label.split(':')[0] as ViolationType;
 
   const colorForViolation: ChipColorStyles = {
     must: theme.palette.error.main,

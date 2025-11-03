@@ -1,28 +1,6 @@
-import {
-  Box as BoxUI,
-  Link,
-  Paper,
-  Typography,
-  Button as ButtonUI,
-} from '@material-ui/core';
-import { styled } from '@material-ui/core/styles';
-
-export const Label = styled(Typography)({
-  display: 'flex',
-  alignItems: 'center',
-  fontWeight: 400,
-});
-
-export const UrlLink = styled(Link)({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-around',
-  cursor: 'pointer',
-  marginLeft: 8,
-  letterSpacing: 0,
-  fontWeight: 500,
-  color: '#DE7C02',
-});
+import BoxUI from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import { styled } from '@mui/material/styles';
 
 export const Box = styled(BoxUI)(({ theme }) => ({
   display: 'grid',
@@ -90,12 +68,3 @@ export const ViolationsWrapper = styled(Paper)(({ theme }) => ({
     height: '60vh',
   },
 }));
-
-export const Button = styled(ButtonUI)(
-  ({ border = '' }: { border: string }) => ({
-    marginBottom: 4,
-    marginRight: 4,
-    color: '#DE7C02',
-    border: `1px solid ${border ? '#DE7C0250' : 'none'}`,
-  }),
-);
