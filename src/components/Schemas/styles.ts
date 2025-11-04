@@ -98,6 +98,7 @@ export const SwaggerUIWrapper = styled(Paper)(({ theme }) => ({
           .opblock .opblock-section-header .btn,
           .opblock .opblock-section-header>label,
           .scheme-container .schemes>label,a.nostyle,
+          .scheme-container .schemes>.schemes-server-container>label,
           .parameter__name,
           .response-col_status,
           .response-col_links,
