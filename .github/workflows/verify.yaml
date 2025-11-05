@@ -24,4 +24,5 @@ jobs:
       - run: yarn tsc
       - run: yarn build
       - run: yarn test:ci
-      - run: yarn release --dry-run
+      - if: ${{ matrix.node-version == '22.14.x' }}
+        run: yarn release --dry-run
