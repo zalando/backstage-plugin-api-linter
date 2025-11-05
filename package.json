@@ -10,7 +10,11 @@
     "types": "dist/index.d.ts"
   },
   "backstage": {
-    "role": "frontend-plugin"
+    "role": "frontend-plugin",
+    "pluginId": "backstage-plugin-api-linter",
+    "pluginPackages": [
+      "backstage-plugin-api-linter"
+    ]
   },
   "dependencies": {
     "@backstage/core-components": "^0.17.2",
@@ -75,6 +79,7 @@
     "react-dom": "^18",
     "semantic-release": "^25.0.1"
   },
+  "sideEffects": false,
   "scripts": {
     "postinstall": "husky install",
     "build": "backstage-cli package build",
@@ -98,7 +103,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zalando/backstage-plugin-api-linter.git"
+    "url": "git+https://github.com/zalando/backstage-plugin-api-linter.git",
+    "directory": "."
   },
   "keywords": [
     "api-linter",
