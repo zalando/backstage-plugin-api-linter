@@ -98,7 +98,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zalando/backstage-api-linter-plugin.git"
+    "url": "git+https://github.com/zalando/backstage-plugin-api-linter.git"
   },
   "keywords": [
     "api-linter",
@@ -115,9 +115,9 @@
     "dist"
   ],
   "bugs": {
-    "url": "https://github.com/zalando/backstage-api-linter-plugin/issues"
+    "url": "https://github.com/zalando/backstage-plugin-api-linter/issues"
   },
-  "homepage": "https://github.com/zalando/backstage-api-linter-plugin#readme",
+  "homepage": "https://github.com/zalando/backstage-plugin-api-linter#readme",
   "config": {
     "commitizen": {
       "path": "cz-conventional-changelog"
