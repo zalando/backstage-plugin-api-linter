@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [20.x]
+        node-version: [20.x, 22.14.x]
 
     steps:
       - uses: actions/checkout@v4
@@ -24,3 +24,5 @@ jobs:
       - run: yarn tsc
       - run: yarn build
       - run: yarn test:ci
+      - if: ${{ matrix.node-version == '22.14.x' }}
+        run: yarn release --dry-run
