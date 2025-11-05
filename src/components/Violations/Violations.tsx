@@ -1,4 +1,3 @@
-import React from 'react';
 import { ViolationsResponse } from '../../api/types';
 import { ICommonEventInfo, IEventTracking } from '../../event-types';
 import { Loading } from '../Loading';

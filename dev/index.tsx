@@ -1,9 +1,5 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-import React from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { createDevApp } from '@backstage/dev-utils';
-import { APILinterPlugin } from '../src/plugin';
-import { APILinter } from '../src';
+import { APILinter, APILinterPlugin } from '../src';
 
 createDevApp()
   .registerPlugin(APILinterPlugin)

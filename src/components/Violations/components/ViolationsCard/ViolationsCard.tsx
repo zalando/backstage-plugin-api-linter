@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box, CardContent, Typography } from '@material-ui/core';
 import { ViolationsResponse } from '../../../../api/types';
 import LinkIcon from '@material-ui/icons/Link';

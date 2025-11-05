@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { ViolationsResponse, ViolationsByUrl } from '../../api/types';
+import { useEffect, useState } from 'react';
+import { ViolationsByUrl, ViolationsResponse } from '../../api/types';
 import { ICommonEventInfo, IEventTracking } from '../../event-types';
 import { isValidHttpUrl } from '../../helpers';
 import { URLValidator } from './components/URLValidator';

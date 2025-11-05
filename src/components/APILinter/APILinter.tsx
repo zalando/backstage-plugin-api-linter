@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Schemas } from '../Schemas';
 import { useApi } from '@backstage/core-plugin-api';
 import { zallyApiRef } from '../../api';
