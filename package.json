@@ -6,6 +6,7 @@
   "packageManager": "yarn@4.10.3",
   "publishConfig": {
     "access": "public",
+    "registry": "https://registry.npmjs.org/",
     "main": "dist/index.esm.js",
     "types": "dist/index.d.ts"
   },
