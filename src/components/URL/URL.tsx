@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import { ViolationsByUrl, ViolationsResponse } from '../../api/types';
-import { ICommonEventInfo, IEventTracking } from '../../event-types';
+import { type ChangeEvent, useEffect, useState } from 'react';
+import type { ViolationsByUrl, ViolationsResponse } from '../../api/types';
+import type { ICommonEventInfo, IEventTracking } from '../../event-types';
 import { isValidHttpUrl } from '../../helpers';
 import { URLValidator } from './components/URLValidator';
 
@@ -16,7 +16,7 @@ type URLProps = {
   urlStorage?: string;
 };
 
-export const URLComponent: React.FC<URLProps> = ({
+export function URLComponent({
   open,
   onOpen,
   fetchData,
@@ -26,11 +26,11 @@ export const URLComponent: React.FC<URLProps> = ({
   event,
   handleUrlStorage,
   urlStorage,
-}) => {
+}: URLProps) {
   const [input, setInput] = useState('');
   const [error, setError] = useState('');
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setError('');
     setInput(e.target.value);
     handleUrlStorage(e.target.value);
@@ -80,4 +80,4 @@ export const URLComponent: React.FC<URLProps> = ({
       inputValue={input}
     />
   );
-};
+}

@@ -1,13 +1,14 @@
 import { createDevApp } from '@backstage/dev-utils';
+import Box from '@mui/material/Box';
 import { APILinter, APILinterPlugin } from '../src';
 
 createDevApp()
   .registerPlugin(APILinterPlugin)
   .addPage({
     element: (
-      <div style={{ padding: '1rem' }}>
+      <Box padding="1rem">
         <APILinter />
-      </div>
+      </Box>
     ),
     title: 'Root Page',
     path: '/api-linter',

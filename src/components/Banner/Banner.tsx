@@ -1,10 +1,11 @@
 import { ReactNode } from 'react';
-import Alert from '@material-ui/lab/Alert';
-import Collapse from '@material-ui/core/Collapse';
-import CloseIcon from '@material-ui/icons/Close';
+import Alert from '@mui/material/Alert';
+import Collapse from '@mui/material/Collapse';
+import CloseIcon from '@mui/icons-material/Close';
 import { useLocalStorage } from 'react-use';
-import * as S from './styles';
-import { IEventTracking } from '../../event-types';
+import type { IEventTracking } from '../../event-types';
+import IconButton from '@mui/material/IconButton';
+import Box from '@mui/material/Box';
 
 type BannerProps = {
   sendEvent: ((args: IEventTracking) => void) | undefined;
@@ -14,25 +15,21 @@ type BannerProps = {
   children: ReactNode;
 };
 
-export const Banner: React.FC<BannerProps> = ({
-  variant,
-  severity,
-  id,
-  children,
-}) => {
+export function Banner({ variant, severity, id, children }: BannerProps) {
   const [open, setOpen] = useLocalStorage<boolean>(`${id}Dismissible`, true);
 
   return (
-    <S.BannerWrapper>
+    <Box width="100%" mb={2}>
       <Collapse in={open}>
         <Alert
           action={
-            <CloseIcon
-              onClick={() => {
-                setOpen(false);
-              }}
-              fontSize="inherit"
-            />
+            <IconButton
+              onClick={() => setOpen(false)}
+              size="small"
+              sx={{ fontSize: 'inherit' }}
+            >
+              <CloseIcon fontSize="inherit" />
+            </IconButton>
           }
           variant={variant}
           severity={severity}
@@ -40,6 +37,6 @@ export const Banner: React.FC<BannerProps> = ({
           {children}
         </Alert>
       </Collapse>
-    </S.BannerWrapper>
+    </Box>
   );
-};
+}

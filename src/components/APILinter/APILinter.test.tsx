@@ -1,5 +1,5 @@
 import { APILinter } from '.';
-import { ThemeProvider } from '@material-ui/core';
+import { ThemeProvider } from '@mui/material/styles';
 import { themes } from '@backstage/theme';
 import { renderInTestApp, TestApiProvider } from '@backstage/test-utils';
 import userEvent from '@testing-library/user-event';
@@ -50,19 +50,18 @@ describe('APILinter', () => {
 
   it('should render rules', async () => {
     const { getByText, findAllByTestId } = await renderApp();
-    fireEvent.click(getByText(/view the rules/i));
+    await userEvent.click(getByText(/view the rules/i));
     const ruleCards = await findAllByTestId('rule');
     expect(ruleCards.length).toBeGreaterThan(0);
   });
 
   it('should render URL dialog and display violation', async () => {
-    const { getByText, getByTestId, findByTestId, findAllByTestId } =
-      await renderApp();
-
-    fireEvent.click(getByText(/import url/i));
-    const urlInput = getByText(/Enter the url to import from/i);
+    const { getByTestId, findByTestId, findAllByTestId } = await renderApp();
+    await userEvent.click(getByTestId('import-url-btn'));
+    const urlInputWrapper = await findByTestId('import-url-wrapper');
+    const urlInput = urlInputWrapper.querySelector('input')!;
     await userEvent.type(urlInput, 'https://www.rawapi.com.br/api.json');
-    fireEvent.click(getByTestId(/url-validate/i));
+    await userEvent.click(getByTestId(/url-validate/i));
     const violations = await findAllByTestId(/violation/i);
     expect(violations.length).toBe(1);
     expect(await findByTestId('must')).toBeInTheDocument();
@@ -73,7 +72,7 @@ describe('APILinter', () => {
     const schemaInput = getByText(/Paste a swagger schema here/i);
     expect(schemaInput).toBeInTheDocument();
     await userEvent.type(schemaInput, stringSchema);
-    fireEvent.click(getByTestId(/schema-validate/i));
+    await userEvent.click(getByTestId(/schema-validate/i));
     const violations = await findAllByTestId(/violation/i);
     expect(violations.length).toBe(1);
   });
@@ -81,21 +80,23 @@ describe('APILinter', () => {
 
 describe('APILinter - No violations / Error', () => {
   it('should display perfect badge when no violations are found', async () => {
-    const { getByTestId, getByText, findByTestId } = await renderApp(true);
-    fireEvent.click(getByText(/import url/i));
-    const urlInput = getByText(/Enter the url to import from/i);
+    const { getByTestId, findByTestId } = await renderApp(true);
+    await userEvent.click(getByTestId('import-url-btn'));
+    const urlInputWrapper = await findByTestId('import-url-wrapper');
+    const urlInput = urlInputWrapper.querySelector('input')!;
     await userEvent.type(urlInput, 'https://www.perfectapi.com.br/api.json');
-    fireEvent.click(getByTestId(/url-validate/i));
+    await userEvent.click(getByTestId(/url-validate/i));
     expect(await findByTestId(/perfect/i)).toBeInTheDocument();
   });
 
   it('should not submit when user types invalid url', async () => {
-    const { getByText, getByTestId } = await renderApp(true);
+    const { getByText, getByTestId, findByTestId } = await renderApp(true);
     fireEvent.click(getByText(/import url/i));
-    const urlInput = getByText(/Enter the url to import from/i);
+    const urlInputWrapper = await findByTestId('import-url-wrapper');
+    const urlInput = urlInputWrapper.querySelector('input')!;
     await userEvent.type(urlInput, 'invalid-url');
-    fireEvent.click(getByTestId(/url-validate/i));
-    expect(getByText(/enter the URL to import from/i)).toBeInTheDocument();
+    await userEvent.click(getByTestId(/url-validate/i));
+    expect(urlInput).toBeInTheDocument();
   });
 
   it('should render Schema and display correct badge when no violations are found', async () => {

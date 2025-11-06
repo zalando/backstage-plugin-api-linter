@@ -1,12 +1,14 @@
-import { useEffect, useState } from 'react';
 import { useApi } from '@backstage/core-plugin-api';
 import { zallyApiRef } from '../../api';
-import { Box, Button, Drawer, Typography } from '@material-ui/core';
+import Box from '@mui/material/Box';
+import Drawer from '@mui/material/Drawer';
+import Typography from '@mui/material/Typography';
 import { Loading } from '../Loading';
 import { DetailsCard } from './components/DetailsCard';
-import { useStyles } from './styles';
-import { Rule } from '../../api/types';
-import { ICommonEventInfo, IEventTracking } from '../../event-types';
+import type { ICommonEventInfo, IEventTracking } from '../../event-types';
+import { useAsync } from 'react-use';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
 
 type RulesProps = {
   openRules: boolean;
@@ -15,23 +17,17 @@ type RulesProps = {
   event?: ICommonEventInfo;
 };
 
-export const Rules: React.FC<RulesProps> = ({
+export function Rules({
   openRules,
   toggleDrawer,
   sendEvent,
   event,
-}) => {
-  const [rules, setRules] = useState<Rule[]>([]);
+}: RulesProps) {
   const zally = useApi(zallyApiRef);
-  const styles = useStyles();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await zally.getRules();
-      const filterdRules = response.filter(item => item.type !== 'HINT');
-      setRules(filterdRules);
-    };
-    fetchData();
+  const { value: rules, loading } = useAsync(async () => {
+    const response = await zally.getRules();
+    return response.filter(item => item.type !== 'HINT');
   }, [zally]);
 
   return (
@@ -40,17 +36,22 @@ export const Rules: React.FC<RulesProps> = ({
       open={openRules}
       onClose={toggleDrawer}
       className="rules-drawer"
-      classes={{ paper: styles.drawerPaper }}
+      PaperProps={{ sx: { width: '25%', padding: '24px' } }}
     >
       <Box display="flex" justifyContent="space-between">
         <Typography variant="h5">Zalando's API Rules</Typography>
-        <Button onClick={toggleDrawer}>X</Button>
+        <IconButton
+          onClick={toggleDrawer}
+          size="small"
+          sx={{ aspectRatio: '1/1', height: 30 }}
+        >
+          <CloseIcon fontSize="small" />
+        </IconButton>
       </Box>
 
-      {rules.map(({ code, type, url, title }) => (
+      {rules?.map(({ code, type, url, title }) => (
         <Box key={code} data-testid="rule">
           <DetailsCard
-            key={code}
             title={title}
             type={type}
             link={url}
@@ -60,7 +61,7 @@ export const Rules: React.FC<RulesProps> = ({
         </Box>
       ))}
 
-      {!rules.length && <Loading />}
+      {loading && <Loading />}
     </Drawer>
   );
-};
+}

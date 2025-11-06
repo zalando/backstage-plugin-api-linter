@@ -1,5 +1,5 @@
-import { ViolationsResponse } from '../../api/types';
-import { ICommonEventInfo, IEventTracking } from '../../event-types';
+import type { ViolationsResponse } from '../../api/types';
+import type { ICommonEventInfo, IEventTracking } from '../../event-types';
 import { Loading } from '../Loading';
 import { ViolationsCard } from './components';
 import * as S from './styles';
@@ -13,14 +13,14 @@ type ViolationsProps = {
   event?: ICommonEventInfo;
 };
 
-export const Violations: React.VFC<ViolationsProps> = ({
+export function Violations({
   response,
   loading,
   error,
   onExternalIdChange,
   sendEvent,
   event,
-}) => {
+}: ViolationsProps) {
   const hasResponse =
     !loading && response && response.violations_count && !error;
   const hasError = !loading && !response && !!error;
@@ -51,4 +51,4 @@ export const Violations: React.VFC<ViolationsProps> = ({
       )}
     </>
   );
-};
+}

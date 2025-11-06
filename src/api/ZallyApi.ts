@@ -1,5 +1,5 @@
 import { createApiRef, DiscoveryApi } from '@backstage/core-plugin-api';
-import {
+import type {
   Rule,
   ViolationsByString,
   ViolationsByUrl,
