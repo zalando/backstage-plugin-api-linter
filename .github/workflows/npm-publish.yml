@@ -10,16 +10,13 @@ on:
 
 permissions:
   contents: read
+  id-token: write
 
 jobs:
   release:
     runs-on: ubuntu-latest
     environment: npm
-    permissions:
-      id-token: write
-      contents: write
-      issues: write
-      pull-requests: write
+    # Remove job-level permissions block
     steps:
       - uses: actions/checkout@v4
         with:
@@ -28,12 +25,7 @@ jobs:
         with:
           node-version: 22.14.x
           registry-url: https://registry.npmjs.org/
-          always-auth: true
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - run: npm whoami
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: npm -v
       - name: Enable Corepack (Yarn 4)
         run: corepack enable
       - run: yarn install --immutable
@@ -41,6 +33,5 @@ jobs:
       - run: yarn build
       - name: Run semantic-release
         run: yarn release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Publish with provenance
+        run: npm publish --provenance --access public
