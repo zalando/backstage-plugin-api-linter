@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   id-token: write
 
 jobs:
@@ -33,5 +33,5 @@ jobs:
       - run: yarn build
       - name: Run semantic-release
         run: yarn release
-      - name: Publish with provenance
-        run: npm publish --provenance --access public
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
