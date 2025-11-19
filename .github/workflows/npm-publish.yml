@@ -8,17 +8,24 @@ on:
     branches: [ "main" ]
   workflow_dispatch:
 
+permissions:
+  contents: write
+  id-token: write
+
 jobs:
   release:
     runs-on: ubuntu-latest
+    environment: npm
+    # Remove job-level permissions block
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22.14.x
           registry-url: https://registry.npmjs.org/
+      - run: npm -v
       - name: Enable Corepack (Yarn 4)
         run: corepack enable
       - run: yarn install --immutable
@@ -28,4 +35,3 @@ jobs:
         run: yarn release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

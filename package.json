@@ -6,11 +6,16 @@
   "packageManager": "yarn@4.10.3",
   "publishConfig": {
     "access": "public",
+    "registry": "https://registry.npmjs.org/",
     "main": "dist/index.esm.js",
     "types": "dist/index.d.ts"
   },
   "backstage": {
-    "role": "frontend-plugin"
+    "role": "frontend-plugin",
+    "pluginId": "backstage-plugin-api-linter",
+    "pluginPackages": [
+      "backstage-plugin-api-linter"
+    ]
   },
   "dependencies": {
     "ace-builds": "^1.4.14",
@@ -71,6 +76,7 @@
     "react-router-dom": "^6.4.5",
     "semantic-release": "^25.0.1"
   },
+  "sideEffects": false,
   "scripts": {
     "postinstall": "husky install",
     "build": "backstage-cli package build",
@@ -94,7 +100,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zalando/backstage-api-linter-plugin.git"
+    "url": "git+https://github.com/zalando/backstage-plugin-api-linter.git",
+    "directory": "."
   },
   "keywords": [
     "api-linter",
@@ -111,9 +118,9 @@
     "dist"
   ],
   "bugs": {
-    "url": "https://github.com/zalando/backstage-api-linter-plugin/issues"
+    "url": "https://github.com/zalando/backstage-plugin-api-linter/issues"
   },
-  "homepage": "https://github.com/zalando/backstage-api-linter-plugin#readme",
+  "homepage": "https://github.com/zalando/backstage-plugin-api-linter#readme",
   "config": {
     "commitizen": {
       "path": "cz-conventional-changelog"
