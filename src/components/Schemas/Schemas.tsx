@@ -2,23 +2,27 @@ import { useEffect } from 'react';
 import AceEditor from 'react-ace';
 import 'ace-builds/src-noconflict/mode-java';
 import 'ace-builds/src-noconflict/theme-github';
+import 'ace-builds/src-noconflict/theme-one_dark';
 import 'brace';
 import 'brace/ext/language_tools';
 import 'brace/ext/searchbox';
 import 'brace/theme/chrome';
+import 'brace/theme/dracula';
 import 'brace/mode/yaml';
 import 'brace/mode/json';
 import 'brace/snippets/yaml';
 import 'brace/snippets/json';
 import 'swagger-ui-react/swagger-ui.css';
-import { Box, Typography } from '@material-ui/core';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 import { Violations } from '../Violations';
-import { ViolationsResponse } from '../../api/types';
-import LinkIcon from '@material-ui/icons/Link';
+import type { ViolationsResponse } from '../../api/types';
+import LinkIcon from '@mui/icons-material/Link';
 import SwaggerUI from 'swagger-ui-react';
-
+import Button from '@mui/material/Button';
 import * as S from './styles';
-import { ICommonEventInfo, IEventTracking } from '../../event-types';
+import type { ICommonEventInfo, IEventTracking } from '../../event-types';
+import { useTheme } from '@mui/material/styles';
 
 type SchemasProps = {
   onInputChange: (value: string) => void;
@@ -35,7 +39,7 @@ type SchemasProps = {
   handleClearAll: VoidFunction;
 };
 
-export const Schemas: React.FC<SchemasProps> = ({
+export function Schemas({
   onInputChange,
   onSubmit,
   schemaValue,
@@ -48,7 +52,8 @@ export const Schemas: React.FC<SchemasProps> = ({
   event,
   handleSchemaStorage,
   handleClearAll,
-}) => {
+}: SchemasProps) {
+  const theme = useTheme();
   const handleOnClick = () => {
     openUrlDialog();
     sendEvent?.({
@@ -72,42 +77,50 @@ export const Schemas: React.FC<SchemasProps> = ({
 
   return (
     <Box display="flex" flexDirection="column" width="100%">
-      <Typography variant="h4" component="h2" style={{ fontSize: 18 }}>
+      <Typography variant="h4" component="h2" sx={{ fontSize: 18 }}>
         Schemas
       </Typography>
 
       <Box
         display="flex"
         justifyContent="space-between"
-        alignItems="flex-end"
+        alignItems="center"
         width="100%"
+        gap={0.5}
       >
-        <S.Label variant="body1">
-          Paste a swagger schema here. Or
-          <S.UrlLink onClick={handleOnClick}>
-            <LinkIcon />
-            <span>IMPORT URL</span>
-          </S.UrlLink>
-        </S.Label>
-        <Box display="flex" justifyContent="space-between">
-          <S.Button
-            border=""
-            variant="text"
-            onClick={handleClearAll}
-            data-testid="schema-clear"
-          >
-            clear
-          </S.Button>
-          <S.Button
-            border="true"
-            variant="outlined"
-            onClick={onSubmit}
-            data-testid="schema-validate"
-            disabled={!schemaValue}
-          >
-            Validate
-          </S.Button>
-        </Box>
+        <Typography variant="body1">Paste a swagger schema here. Or</Typography>
+        <Button
+          startIcon={<LinkIcon />}
+          variant="text"
+          disableRipple
+          onClick={handleOnClick}
+          data-testid="import-url-btn"
+          sx={{
+            fontSize: '1rem',
+            '&:hover': {
+              background: 'none',
+              textDecoration: 'underline',
+            },
+          }}
+        >
+          IMPORT URL
+        </Button>
+        <Box flexGrow={1} />
+        <Button
+          variant="text"
+          onClick={handleClearAll}
+          data-testid="schema-clear"
+        >
+          clear
+        </Button>
+        <Button
+          variant="outlined"
+          onClick={onSubmit}
+          data-testid="schema-validate"
+          disabled={!schemaValue}
+        >
+          Validate
+        </Button>
       </Box>
 
       <S.Box>
@@ -126,7 +139,7 @@ export const Schemas: React.FC<SchemasProps> = ({
             mode={mode}
             width="100%"
             height="100%"
-            theme="chrome"
+            theme={theme.palette.mode === 'dark' ? 'dracula' : 'chrome'}
             showPrintMargin={false}
             onChange={onInputChange}
             name="editor"
@@ -153,4 +166,4 @@ export const Schemas: React.FC<SchemasProps> = ({
       </S.Box>
     </Box>
   );
-};
+}

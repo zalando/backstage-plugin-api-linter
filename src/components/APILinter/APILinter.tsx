@@ -8,12 +8,12 @@ import { forceChangeAndClear, getIDFromURL } from '../../helpers';
 import { SCHEMA_STORAGE_KEY, URL_STORAGE_KEY } from '../../constants';
 import { useLocalStorage } from 'react-use';
 import { Header } from '../Header';
-import {
+import type {
   ViolationsByString,
   ViolationsByUrl,
   ViolationsResponse,
 } from '../../api/types';
-import { ICommonEventInfo, IEventTracking } from '../../event-types';
+import type { ICommonEventInfo, IEventTracking } from '../../event-types';
 
 type APILinterProps = {
   sendEvent?: (args: IEventTracking) => void;
@@ -21,11 +21,11 @@ type APILinterProps = {
   eventInfo?: ICommonEventInfo;
 };
 
-export const APILinter: React.FC<APILinterProps> = ({
-  sendEvent = undefined,
-  sendPageView = undefined,
-  eventInfo = undefined,
-}) => {
+export function APILinter({
+  sendEvent,
+  sendPageView,
+  eventInfo,
+}: APILinterProps) {
   const [externalId, setExternalId] = useState(getIDFromURL(location.pathname));
   const [schemaInput, setSchemaInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -183,4 +183,4 @@ export const APILinter: React.FC<APILinterProps> = ({
       />
     </>
   );
-};
+}

@@ -1,4 +1,5 @@
-import { styled, Typography } from '@material-ui/core';
+import { styled } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
 
 export const ViolationsEmpty = styled(Typography)({
   display: 'flex',

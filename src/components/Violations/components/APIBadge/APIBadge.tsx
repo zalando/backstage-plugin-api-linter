@@ -1,5 +1,5 @@
-import { Typography } from '@material-ui/core';
-import { ViolationCount } from '../../../../api/types';
+import Typography from '@mui/material/Typography';
+import type { ViolationCount } from '../../../../api/types';
 import {
   mayViolations,
   mustViolations,
@@ -7,7 +7,7 @@ import {
   shouldViolations,
 } from './texts';
 import * as S from './styles';
-import { ICommonEventInfo, IEventTracking } from '../../../../event-types';
+import type { ICommonEventInfo, IEventTracking } from '../../../../event-types';
 
 type APIBadgeProps = {
   violations: ViolationCount;
@@ -15,11 +15,7 @@ type APIBadgeProps = {
   event?: ICommonEventInfo;
 };
 
-export const APIBadge: React.FC<APIBadgeProps> = ({
-  violations,
-  sendEvent,
-  event,
-}) => {
+export function APIBadge({ violations, sendEvent, event }: APIBadgeProps) {
   const handleEventEmitter = (context: string, value?: string) => {
     sendEvent?.({
       ...(event as ICommonEventInfo),
@@ -87,4 +83,4 @@ export const APIBadge: React.FC<APIBadgeProps> = ({
       </Typography>
     </S.BadgeWrapper>
   );
-};
+}
