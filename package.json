@@ -1,6 +1,6 @@
 {
   "name": "backstage-plugin-api-linter",
-  "version": "0.0.0-semantic-release",
+  "version": "1.1.0",
   "description": "API Linter is a quality assurance tool that checks the compliance of API's specifications to Zalando's API rules.",
   "main": "src/index.ts",
   "packageManager": "yarn@4.10.3",
@@ -50,7 +50,7 @@
     "@mui/material": "^5.16.0",
     "@mui/styles": "^5.16.0",
     "@semantic-release/github": "^10.3.5",
-    "@semantic-release/npm": "^13.1.0",
+    "@semantic-release/npm": "^12.0.1",
     "@spotify/prettier-config": "*",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
@@ -78,7 +78,7 @@
   },
   "sideEffects": false,
   "scripts": {
-    "postinstall": "husky install",
+    "prepare": "husky install",
     "build": "backstage-cli package build",
     "start": "backstage-cli package start",
     "lint": "backstage-cli package lint",
